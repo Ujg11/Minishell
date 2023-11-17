@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_lexer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:53:53 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/14 12:58:42 by agrimald         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:53:11 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	special_char(char corr)
 
 size_t	get_char_special(char *token, char next_special_char)
 {
-	size_t size;
+	size_t	size;
 
 	size = 0;
 	while (*token)
@@ -63,7 +63,7 @@ bool	search_char(char *token)
 	while (*token)
 	{
 		if (ft_strchr(token, '\'') || ft_strchr(token, '\"'))
-				return (false);
+			return (false);
 		if (ft_strchr(token, '|') || ft_strchr(token, '>') \
 				|| ft_strchr(token, '<') || ft_strchr(token, ';'))
 		{
