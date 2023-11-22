@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/17 16:00:49 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:22:34 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_word
 
 typedef struct s_tokens
 {
+	int		type;//tipo de token
 	t_word	*words;
 	size_t	size;
 	//t_word	*first;
