@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:14:52 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/17 16:54:24 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/16 21:42:33 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_rd(int c)
 	return (0);
 }
 
-int	is_redirection(char *str, int i)
+int is_redirection(char *str, int i)
 {
 	if (str[i + 1] == '\0')
 		return (1);
@@ -47,7 +47,7 @@ int	check_rd(char *str, int i)
 
 int	check_input(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i] != '\0')
