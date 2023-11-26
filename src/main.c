@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/23 21:57:37 by agrimald         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:58:46 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,105 +27,102 @@
 	return (0);
 }*/
 
-t_tokens *init_token(t_env **env);
-int add_words(t_tokens *tokens, char *str, size_t len, int type);
-int special_char(char c);
-void free_tokens(t_tokens *tokens);
+t_tokens	*init_token(t_env **env);
+int			add_words(t_tokens *tokens, char *str, size_t len, int type);
+int			special_char(char c);
+void		free_tokens(t_tokens *tokens);
 
-void execute_command(CommandInfo *command)
+void	execute_command(CommandInfo *command)
 {
-    pid_t pid = fork(); // Crear un nuevo proceso
-
-    if (pid == -1)
-    {
-        // Error en la creación del proceso hijo
-        perror("fork");
-        exit(EXIT_FAILURE);
-    }
-
-    if (pid == 0)
-    {
-        // Este código se ejecuta en el proceso hijo
-        if (execvp(command->args[0], command->args) == -1)
-        {
-            // Error en la ejecución del comando
-            perror("execvp");
+	pid_t pid = fork(); // Crear un nuevo proceso
+	if (pid == -1)
+	{
+		// Error en la creación del proceso hijo
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
+	if (pid == 0) // Este código se ejecuta en el proceso hijo
+	{
+		if (execvp(command->args[0], command->args) == -1) //esta no se puede, es execve()
+		{
+			// Error en la ejecución del comando
+			perror("execvp");
 			printf("Error ejecutando el comando: %s\n", command->args[0]);
-            exit(EXIT_FAILURE);
-        }
-    }
-    else
-    {
-        // Este código se ejecuta en el proceso padre
-        int status;
-        waitpid(pid, &status, 0); // Esperar a que el proceso hijo termine
-    }
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		// Este código se ejecuta en el proceso padre
+		int status;
+		waitpid(pid, &status, 0); // Esperar a que el proceso hijo termine
+	}
 }
 
-int main()
+int	main(int argc, char *argv[], char **tenv)
 {
-	signals();
+	char		*input;
+	t_tokens	*tokens;
+	t_env		**env = NULL;//tenemos que utilizar la env del main (aun no se bien como va)
 
-    char *input;
-    t_tokens *tokens;
-    t_env **env = NULL;
+	(void)tenv;
+	(void)argc;
+	(void)argv;
+	//signals();
+	while (1)
+	{
+		input = readline(" > ");
+		if (!input)
+			exit(1);
+		if (input)
+		{
+			printf("Texto ingresado: %s\n", input);
+			// Inicializar tokens
+			tokens = init_token(env);
+			// Parsear la entrada
+			if (parser(tokens, input) == 42)
+			{
+				// Manejar el error
+				printf("Error en la entrada.\n");
+			}
+			else
+			{
+				// Imprimir tokens (opcional)
+				print_tokens(tokens);
 
-    while (1)
-    {
-        input = readline(" > ");
-        if (!input)
-            exit(1);
-        if (input)
-        {
-            printf("Texto ingresado: %s\n", input);
+				// Ejecutar comandos según los tokens
+				size_t i = 0;
+				while (i < tokens->size)
+				{
+					t_word *current_word = &tokens->words[i];
 
-            // Inicializar tokens
-            tokens = init_token(env);
+					// Verificar si el token es un comando ejecutable
+					if (current_word->type == 0)
+					{
+						CommandInfo command;
+						command.args = malloc(sizeof(char *) * 2); // Tamaño 2 para el comando y NULL al final
+						command.args[0] = current_word->word;
+						command.args[1] = NULL; // Termina la lista de argumentos
 
-            // Parsear la entrada
-            if (parser(tokens, input) == 42)
-            {
-                // Manejar el error
-                printf("Error en la entrada.\n");
-            }
-            else
-            {
-                // Imprimir tokens (opcional)
-                print_tokens(tokens);
+						// Ejecutar el comando
+						execute_command(&command);
 
-                // Ejecutar comandos según los tokens
-                size_t i = 0;
-                while (i < tokens->size)
-                {
-                    t_word *current_word = &tokens->words[i];
+						// Liberar memoria de los argumentos
+						free(command.args);
+					}
 
-                    // Verificar si el token es un comando ejecutable
-                    if (current_word->type == 0)
-                    {
-                        CommandInfo command;
-                        command.args = malloc(sizeof(char *) * 2); // Tamaño 2 para el comando y NULL al final
-                        command.args[0] = current_word->word;
-                        command.args[1] = NULL; // Termina la lista de argumentos
+					i += 1;
+				}
 
-                        // Ejecutar el comando
-                        execute_command(&command);
+				// Liberar memoria de tokens
+				free_tokens_memory(tokens);
+			}
 
-                        // Liberar memoria de los argumentos
-                        free(command.args);
-                    }
+			free(input);
+		}
+	}
 
-                    i += 1;
-                }
-
-                // Liberar memoria de tokens
-                free_tokens_memory(tokens);
-            }
-
-            free(input);
-        }
-    }
-
-    return 0;
+	return 0;
 }
 /*int main()
 {

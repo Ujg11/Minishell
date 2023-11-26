@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/26 13:53:11 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:17:14 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ typedef struct s_env
 
 typedef struct s_word
 {
-	char	*word;
-	size_t	len;
-	int		type;
+	char		*word;
+	size_t		len;
+	int			type;
+	//struct word_s	*next;
 }t_word;
 
 typedef struct
@@ -54,6 +55,12 @@ typedef struct s_tokens
 	int		error;
 }t_tokens;
 
+typedef struct s_expander
+{
+	int	num_pipes;
+	int	exp_type;
+}t_expander;
+
 
 /*****************************************************
  *						UTILS						 *
@@ -61,11 +68,11 @@ typedef struct s_tokens
 
 	/*--------ENV--------*/
 
-size_t	read_variable(char *or_env);
-void	duplicate_env(char **env_cpy, char *or_env);
-char	*cpy_or_env(char *or_env);
-char	*ft_getenv(char *variable, char **env);
-int		main(int argc, char **argv, char **envp);
+size_t		read_variable(char *or_env);
+void		duplicate_env(char **env_cpy, char *or_env);
+char		*cpy_or_env(char *or_env);
+char		*ft_getenv(char *variable, char **env);
+int			main(int argc, char **argv, char **envp);
 
 
 /*****************************************************
@@ -75,11 +82,11 @@ int		main(int argc, char **argv, char **envp);
 
 	/*--------PWD--------*/
 
-void	pwd(void);
+void		pwd(void);
 
 	/*--------ECHO-------*/
 
-int		echo(char **args);
+int			echo(char **args);
 
 /*****************************************************
  *					  LEXER							 *
@@ -107,15 +114,15 @@ int		check_input(char *str);*/
  *					  SIGNALS						 *
  *****************************************************/
 
-void	signals(void);
-void	signal_ctrl_c(int sig);
+void		signals(void);
+void		signal_ctrl_c(int sig);
 
 /*****************************************************
  *					  MAIN							 *
  *****************************************************/
 
-int main();
-void	execute_command(CommandInfo *command);
+int 		main();
+void		execute_command(CommandInfo *command);
 
 /*****************************************************
  *					  PARSER						 *
@@ -124,7 +131,7 @@ void	execute_command(CommandInfo *command);
 	/*--------TOKEN_MANAGER--------*/
 
 t_tokens	*init_token(t_env **env);
-int		add_words(t_tokens *tokens, char *str, size_t len, int type);
+int			add_words(t_tokens *tokens, char *str, size_t len, int type);
 void		free_tokens(t_tokens *tokens);
 int			matrixify(t_tokens *tokens);
 
@@ -156,4 +163,12 @@ int			string_tokens(t_tokens *tokens, char *str);
 int			parse_string(t_tokens *tokens, char *str);
 int			parser(t_tokens *tokens, char *str);
 
+/*****************************************************
+ *					  EXPANDER						 *
+ *****************************************************/
+//expander.c
+int			expander(t_tokens	*tokens);
+
+//utils_exp.c
+int			count_pipes(t_tokens *tokens);
 #endif

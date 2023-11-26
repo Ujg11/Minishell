@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:51:53 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/11/24 13:41:01 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/26 14:33:55 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ char	*remove_end(char *str)
 }
 
 //Caso de ir hacia atras
-int	cd_back(void)
+char	*cd_back(void)
 {
 	char	*pwd_i;
 	char	*pwd_f;
 
 	pwd_i = getcwd(NULL, 0);
-	if (!pwd)
+	if (!pwd_i)
 	{
 		perror("get_cwd");
 		exit(EXIT_FAILURE);
@@ -85,12 +85,11 @@ int	cd_back(void)
 //Caso de ir hacia delante
 char	*cd_forward(char **args)
 {
-	int		flag;
 	char	*pwd_i;
 	char	*pwd_f;
 
 	pwd_i = getcwd(NULL, 0);
-	if (!pwd)
+	if (!pwd_i)
 	{
 		perror("get_cwd");
 		exit(EXIT_FAILURE);
