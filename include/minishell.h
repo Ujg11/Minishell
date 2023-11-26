@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/22 13:22:34 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:46:09 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <dirent.h>
-# include <termios.h>
-# include <termcap.h>
-
 typedef struct s_env
 {
 	char	*env_cpy;	
@@ -44,11 +38,17 @@ typedef struct s_word
 	int		type;
 }t_word;
 
+typedef struct
+{
+    char **args; // Array de argumentos del comando
+    // Otros campos según sea necesario
+} CommandInfo;
+
 typedef struct s_tokens
 {
-	int		type;//tipo de token
 	t_word	*words;
 	size_t	size;
+	char	*str;
 	//t_word	*first;
 	t_env	**env;
 	int		error;
@@ -61,11 +61,11 @@ typedef struct s_tokens
 
 	/*--------ENV--------*/
 
-size_t		read_variable(char *or_env);
-void		duplicate_env(char **env_cpy, char *or_env);
-char		*cpy_or_env(char *or_env);
-char		*ft_getenv(char *variable, char **env);
-int			main(int argc, char **argv, char **envp);
+size_t	read_variable(char *or_env);
+void	duplicate_env(char **env_cpy, char *or_env);
+char	*cpy_or_env(char *or_env);
+char	*ft_getenv(char *variable, char **env);
+int		main(int argc, char **argv, char **envp);
 
 
 /*****************************************************
@@ -107,14 +107,15 @@ int		check_input(char *str);*/
  *					  SIGNALS						 *
  *****************************************************/
 
-void		signals(void);
-void		signal_ctrl_c(int sig);
+void	signals(void);
+void	signal_ctrl_c(int sig);
 
 /*****************************************************
  *					  MAIN							 *
  *****************************************************/
 
-int			main();
+int main();
+void	execute_command(CommandInfo *command);
 
 /*****************************************************
  *					  PARSER						 *
@@ -123,7 +124,7 @@ int			main();
 	/*--------TOKEN_MANAGER--------*/
 
 t_tokens	*init_token(t_env **env);
-int			add_words(t_tokens *tokens, char *str, size_t len, int type);
+int		add_words(t_tokens *tokens, char *str, size_t len, int type);
 void		free_tokens(t_tokens *tokens);
 int			matrixify(t_tokens *tokens);
 
@@ -153,6 +154,6 @@ int			break_token(t_tokens *tokens, char *str);
 int			is_normal_ch(char ch);
 int			string_tokens(t_tokens *tokens, char *str);
 int			parse_string(t_tokens *tokens, char *str);
-int			parser(t_tokens *tokens);
+int			parser(t_tokens *tokens, char *str);
 
 #endif

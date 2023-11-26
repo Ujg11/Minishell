@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:51:53 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/11/22 13:45:14 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:41:01 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int	cd(char **args)
 	char	*pwd_i;
 	char	*pwd_f;
 
-	print_line = 1;
 	if (ft_strncmp(*args, "cd", ft_strlen(*args)) != 0)
 		return (EXIT_FAILURE);
 	args++;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+         #
+#    By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 18:51:28 by agrimald          #+#    #+#              #
-#    Updated: 2023/11/16 22:02:48 by agrimald         ###   ########.fr        #
+#    Updated: 2023/11/24 13:38:57 by ojimenez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ READLINE = -L$(HOME)/.brew/opt/readline/lib -lreadline
 SRCDIR = src/
 OBJDIR = obj/
 
-SRC_L = main.c utils/env.c signals/signals.c commands/echo.c commands/pwd.c \
+SRC_L = main.c utils/env.c signals/signals.c commands/echo.c commands/pwd.c commands/cd.c\
 	   	parser/check_errors.c parser/token_analysis.c parser/tokens_operations.c \
-		parser/token_manager.c parser/parser.c
+		parser/token_manager.c parser/parser.c 
 
 SRC = $(addprefix $(SRCDIR), $(SRC_L))
 OBJECTS = $(addprefix $(OBJDIR), $(SRC:.c=.o))
