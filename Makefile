@@ -6,7 +6,7 @@
 #    By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 18:51:28 by agrimald          #+#    #+#              #
-#    Updated: 2023/11/26 16:16:08 by ojimenez         ###   ########.fr        #
+#    Updated: 2023/11/29 14:05:05 by ojimenez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJDIR = obj/
 SRC_L = main.c utils/env.c signals/signals.c commands/echo.c commands/pwd.c commands/cd.c\
 	   	parser/check_errors.c parser/token_analysis.c parser/tokens_operations.c \
 		parser/token_manager.c parser/parser.c \
-		expander/expander.c expander/utils_exp.c\
+		expander/expander.c expander/utils_exp.c expander/var_expander.c expander/split_to_expand.c \
 
 SRC = $(addprefix $(SRCDIR), $(SRC_L))
 OBJECTS = $(addprefix $(OBJDIR), $(SRC:.c=.o))

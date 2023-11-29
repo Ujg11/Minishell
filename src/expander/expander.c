@@ -6,41 +6,27 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:12:30 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/11/26 17:41:02 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:55:02 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-// INP, OUTP, PIPE
-int	exp_type(t_tokens *tokens, int pos)
-{
-	int	type;
-
-	type = -1;
-	if (i >= 1)
-	{
-		if (tokens->words[ ]->word[0] == '<')
-			type = INP;
-		if (tokens->words[ ]->word[0] == '>')
-			type = OUTP;
-		if (tokens->words[ ]->word[0] == '|')
-			type = PIPE;
-		//faltaria mirar si 
-	}
-	return (type);
-}
 
 int	expander(t_tokens *tokens)
 {
-	t_expansor	*exp;
+	t_expander	*exp;
 	int			i;
+	int			num_pipes;
 
-	exp->pipe_cont = count_pipes(tokens);
-	i = 0;
-	while (i < tokens->size)
+	exp = malloc(sizeof(t_expander));
+	if (!exp)
 	{
-		
-		exp->exp_type = 
-		i++;
+		perror("Error al asignar memoria para un nodo");
+		exit(EXIT_FAILURE);
 	}
+	exp->prev = NULL;
+	exp_expand_var(tokens);
+	num_pipes = count_pipes(tokens);
+	//Mentre que no arribem al final de la linea
+	exp_split_to_expand(tokens, exp);
 }

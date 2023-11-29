@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/26 17:17:14 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:37:53 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_word
 	char		*word;
 	size_t		len;
 	int			type;
-	//struct word_s	*next;
 }t_word;
 
 typedef struct
@@ -57,10 +56,12 @@ typedef struct s_tokens
 
 typedef struct s_expander
 {
-	int	num_pipes;
-	int	exp_type;
+	int			exp_type;
+	int			len;
+	char		**exp_matr;
+	t_expander	*next;
+	t_expander	*prev;
 }t_expander;
-
 
 /*****************************************************
  *						UTILS						 *
@@ -166,9 +167,29 @@ int			parser(t_tokens *tokens, char *str);
 /*****************************************************
  *					  EXPANDER						 *
  *****************************************************/
+
+# define NONE 0
+# define INP 1
+# define OUTP 2
+# define PIPE 3
+# define HEREDOC 4
+# define APPEND 5
+# define INPIPE 6
+# define OUTPIPE 7
+# define HEREDOC_PIPE 8
+# define APPEND_PIPE 9
+
+
 //expander.c
 int			expander(t_tokens	*tokens);
 
 //utils_exp.c
 int			count_pipes(t_tokens *tokens);
+
+//var_expander.c
+void		exp_expand_var(t_tokens *tokens);
+
+//split_to_expand.c
+
+
 #endif
