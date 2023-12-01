@@ -6,31 +6,42 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:31 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/11/29 17:21:41 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:57:26 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*allocate_str_expanded(t_tokens *tokens, int i)
+//En str guardamos la variable a expandir reserbandole memoria.
+//Le quitamos las " " y el &
+char	*allocate_str_expanded(t_tokens *tokens, int i, int flag)
 {
 	int		j;
+	int		k;
 	char	*str;
 
-	i = 0;
-	str = malloc((tokens->words[i].len) * sizeof(char));
+	j = 0;
+	k = 0;
+	str = malloc((tokens->words[i].len - flag) * sizeof(char));
 	if (!str)
-		exit(0);
-	j = 1;
+	{
+		perror("Error al asignar memoria en un malloc");
+		exit(EXIT_FAILURE);
+	}
 	while (j < tokens->words[i].len)
 	{
-		str[j - 1] = tokens->words[i].word[j];
+		if (tokens->words[i].word[j] != '"' && tokens->words[i].word[j] != '&')
+		{
+			str[k] = tokens->words[i].word[j];
+			k++;
+		}
 		j++;
 	}
-	str[j - 1] = '\0';
+	str[k] = '\0';
 	return (str);
 }
 
+//Ponemos en tokens->words la nueva palabra reemplazandola a la anterior
 void	replace_str_expanded(t_tokens *tokens, char *s_changed, int pos)
 {
 	int	len;
@@ -50,7 +61,6 @@ void	replace_str_expanded(t_tokens *tokens, char *s_changed, int pos)
 }
 
 //Miramos las variables que tenemos que expandir
-//Pregntar a anthony comillas simples y dobles si estan
 void	exp_expand_var(t_tokens *tokens)
 {
 	int		i;
@@ -63,7 +73,10 @@ void	exp_expand_var(t_tokens *tokens)
 		if (tokens->words[i].word[0] == '&' || (tokens->words[i].word[1] == '&'
 				&& tokens->words[i].word[0] == '"'))
 		{
-			str = allocate_str_expanded(tokens, i);
+			if (tokens->words[i].word[0] == '"')
+				str = allocate_str_expanded(tokens, i, 2);
+			else
+				str = allocate_str_expanded(tokens, i, 0);
 			s_changed = getenv(str);
 			if (s_changed != NULL)
 				replace_str_expanded(tokens, s_changed, i);

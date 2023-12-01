@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/29 18:49:35 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:06:14 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdbool.h>
+
+struct	s_expander;
 
 typedef struct s_env
 {
@@ -52,16 +54,16 @@ typedef struct s_tokens
 	//t_word	*first;
 	t_env	**env;
 	int		error;
-}t_tokens;
+}	t_tokens;
 
 typedef struct s_expander
 {
-	int			exp_type;
-	int			len;
-	char		**exp_matr;
-	t_expander	*next;
-	t_expander	*prev;
-}t_expander;
+	int					exp_type;
+	int					len;
+	char				**exp_matr;
+	struct s_expander	*next;
+	struct s_expander	*prev;
+}	t_expander;
 
 /*****************************************************
  *						UTILS						 *
@@ -190,6 +192,6 @@ int			count_pipes(t_tokens *tokens);
 void		exp_expand_var(t_tokens *tokens);
 
 //split_to_expand.c
-
+void		exp_split_to_expand(t_tokens *tokens, t_expander **exp);
 
 #endif

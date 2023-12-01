@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:12:30 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/11/29 18:47:25 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:57:19 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	expander(t_tokens *tokens)
 	}
 	exp->prev = NULL;
 	exp_expand_var(tokens);
-	num_pipes = count_pipes(tokens);
+	num_pipes = count_pipes(tokens);//pasarlo como puntero hacia el main
 	//Mentre que no arribem al final de la linea
-	exp_split_to_expand(tokens, exp);
+	exp_split_to_expand(tokens, &exp);
+	return (0);
 }
+
+//Faltara hacer las funciones de free de la lista y los tokens
