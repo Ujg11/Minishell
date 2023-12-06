@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/12/01 13:06:14 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:45:30 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ struct	s_expander;
 typedef struct s_env
 {
 	char	*env_cpy;	
-}t_env;
+}	t_env;
 
 typedef struct s_word
 {
 	char		*word;
 	size_t		len;
 	int			type;
-}t_word;
+}	t_word;
 
 typedef struct
 {

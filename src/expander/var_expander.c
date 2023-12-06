@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:31 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/12/01 12:57:26 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:50:41 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	exp_expand_var(t_tokens *tokens)
 			s_changed = getenv(str);
 			if (s_changed != NULL)
 				replace_str_expanded(tokens, s_changed, i);
-			//si s_changed = NULL deixem la var amb el $ i si ho hem de mostrar fem un \n	
 			free (str);
 		}
 		i++;
