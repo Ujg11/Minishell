@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:31 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/12/06 11:50:41 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:20:22 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ char	*allocate_str_expanded(t_tokens *tokens, int i, int flag)
 		perror("Error al asignar memoria en un malloc");
 		exit(EXIT_FAILURE);
 	}
-	while (j < tokens->words[i].len)
+	while (j < (int)tokens->words[i].len)
 	{
-		if (tokens->words[i].word[j] != '"' && tokens->words[i].word[j] != '&')
+		if (tokens->words[i].word[j] != '"' && tokens->words[i].word[j] != '$')
 		{
 			str[k] = tokens->words[i].word[j];
 			k++;
@@ -68,9 +68,9 @@ void	exp_expand_var(t_tokens *tokens)
 	char	*s_changed;
 
 	i = 0;
-	while (i < tokens->size)
+	while (i < (int)tokens->size)
 	{
-		if (tokens->words[i].word[0] == '&' || (tokens->words[i].word[1] == '&'
+		if (tokens->words[i].word[0] == '$' || (tokens->words[i].word[1] == '$'
 				&& tokens->words[i].word[0] == '"'))
 		{
 			if (tokens->words[i].word[0] == '"')

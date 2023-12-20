@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/12/06 11:45:30 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:17:55 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ typedef struct s_tokens
 	//t_word	*first;
 	t_env	**env;
 	int		error;
+	int		i_exp;
 }	t_tokens;
 
 typedef struct s_expander
 {
 	int					exp_type;
 	int					len;
+	int					num_pipes;
 	char				**exp_matr;
 	struct s_expander	*next;
 	struct s_expander	*prev;
@@ -75,7 +77,6 @@ size_t		read_variable(char *or_env);
 void		duplicate_env(char **env_cpy, char *or_env);
 char		*cpy_or_env(char *or_env);
 char		*ft_getenv(char *variable, char **env);
-int			main(int argc, char **argv, char **envp);
 
 
 /*****************************************************
@@ -124,7 +125,6 @@ void		signal_ctrl_c(int sig);
  *					  MAIN							 *
  *****************************************************/
 
-int 		main();
 void		execute_command(CommandInfo *command);
 
 /*****************************************************
@@ -183,10 +183,13 @@ int			parser(t_tokens *tokens, char *str);
 
 
 //expander.c
-int			expander(t_tokens	*tokens);
+t_expander	*expander(t_tokens	*tokens);
 
 //utils_exp.c
 int			count_pipes(t_tokens *tokens);
+int			len_to_expand(t_tokens *tokens, int *flag);
+void		create_node(t_expander **nodo);
+void		malloc_error(void);
 
 //var_expander.c
 void		exp_expand_var(t_tokens *tokens);
