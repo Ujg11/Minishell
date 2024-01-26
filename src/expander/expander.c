@@ -6,13 +6,13 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:12:30 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/12/20 14:24:50 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:30:52 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_expander	*expander(t_tokens *tokens)
+t_expander	*expander(t_tokens *tokens, t_env *env, t_executor *exec)
 {
 	t_expander	*exp;
 
@@ -24,7 +24,7 @@ t_expander	*expander(t_tokens *tokens)
 	}
 	exp->prev = NULL;
 	exp->next = NULL;
-	exp_expand_var(tokens);
+	exp_expand_var(tokens, env, exec);
 	exp->num_pipes = count_pipes(tokens);
 	exp_split_to_expand(tokens, &exp);
 	return (exp);

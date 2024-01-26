@@ -6,11 +6,34 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:15:24 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/12/20 14:25:50 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:44:50 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_expander_getenv(t_env *env, char *str)
+{
+	int		i;
+	char	*find;
+	char	*res;
+
+	i = 0;
+	find = NULL;
+	while (env->env_cpy[i])
+	{
+		if (ft_strncmp(env->env_cpy[i], str, ft_strlen(str)) == 0)
+		{
+			if (env->env_cpy[i][ft_strlen(str)] == '=')
+				find = strchr(env->env_cpy[i], '=') + 1;
+			break ;
+		}
+		i++;
+	}
+	if (find)
+		res = ft_strdup(find);
+	return (find);
+}
 
 //si no va hacer con strncmp
 int	count_pipes(t_tokens *tokens)
@@ -30,6 +53,8 @@ int	count_pipes(t_tokens *tokens)
 }
 
 //nos dice cuantas palabras van a ir en cada matriz
+//t->i_exp es para recorrer los tokens
+//cont es para saber el numero de palabras que iran en la matriz
 int	len_to_expand(t_tokens *t, int *flag)
 {
 	char	*s;

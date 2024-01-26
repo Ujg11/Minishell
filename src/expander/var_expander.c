@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:31 by ojimenez          #+#    #+#             */
-/*   Updated: 2023/12/20 14:20:22 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:32:20 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,17 @@ void	replace_str_expanded(t_tokens *tokens, char *s_changed, int pos)
 	tokens->words[pos].len = len;
 }
 
+void	exit_status(t_tokens *t, int i, t_executor *exec)
+{
+	char	*num;
+
+	num = ft_itoa(exec->ret_val);
+	replace_str_expanded(t, num, i);
+	free(num);
+}
+
 //Miramos las variables que tenemos que expandir
-void	exp_expand_var(t_tokens *tokens)
+void	exp_expand_var(t_tokens *tokens, t_env	*env, t_executor *exec)
 {
 	int		i;
 	char	*str;
@@ -70,14 +79,17 @@ void	exp_expand_var(t_tokens *tokens)
 	i = 0;
 	while (i < (int)tokens->size)
 	{
-		if (tokens->words[i].word[0] == '$' || (tokens->words[i].word[1] == '$'
+		if (tokens->words[i].word[0] == '$' && tokens->words[i].word[1] == '?')
+			exit_status(tokens, i, exec);
+		else if (tokens->words[i].word[0] == '$'
+			|| (tokens->words[i].word[1] == '$'
 				&& tokens->words[i].word[0] == '"'))
 		{
 			if (tokens->words[i].word[0] == '"')
 				str = allocate_str_expanded(tokens, i, 2);
 			else
 				str = allocate_str_expanded(tokens, i, 0);
-			s_changed = getenv(str);
+			s_changed = ft_expander_getenv(env, str);
 			if (s_changed != NULL)
 				replace_str_expanded(tokens, s_changed, i);
 			free (str);
@@ -85,3 +97,4 @@ void	exp_expand_var(t_tokens *tokens)
 		i++;
 	}
 }
+

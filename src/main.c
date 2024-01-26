@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2023/12/06 14:50:48 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:01:24 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,19 @@ int	main(int argc, char *argv[], char *envp[])
 	return (0);
 }
 
-
-int	main(int argc, char *argv[], char *envp[])
+int	main(int argc, char *argv[], char *env[])
 {
 	char		*input;
 	t_tokens	*tokens;
 	t_expander	*exp;
+	t_executor	exec;
+	t_env		*e;
 	int			err;
 
+	e = malloc(sizeof(t_env));
+	e->env_cpy = env;
+	exec.env = e;
+	exec.ret_val = 0;
 	signals();
 	while (1)
 	{
@@ -137,8 +142,8 @@ int	main(int argc, char *argv[], char *envp[])
 		if (!input)
 			exit(0);
 		err = parser(input, tokens);
-		exp = expander(tokens);
-		executor();
+		exp = expander(tokens, e, &exec);
+		err = executor(exp, e, tokens, &exec);
 	}
 	free_all();
 }

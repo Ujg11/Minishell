@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2023/12/20 14:17:55 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:49:52 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ struct	s_expander;
 
 typedef struct s_env
 {
-	char	*env_cpy;	
+	char	**env_cpy;	
 }	t_env;
 
 typedef struct s_word
@@ -63,10 +63,25 @@ typedef struct s_expander
 	int					len;
 	int					num_pipes;
 	char				**exp_matr;
+	char				*token;
+	int					heredoc_fd;
 	struct s_expander	*next;
 	struct s_expander	*prev;
 }	t_expander;
 
+typedef struct s_executor
+{
+	int					pipe_fd[2];
+	int					prev_pipe[2];
+	int					fd_init[2];
+	int					redirection[2];
+	int					err_flag;
+	int					ret_val;
+	int					cmd_cont;
+	int					num_pipes;
+	t_env				*env;
+	struct s_expander	*exp;
+}	t_executor;
 /*****************************************************
  *						UTILS						 *
  *****************************************************/
@@ -91,6 +106,9 @@ void		pwd(void);
 	/*--------ECHO-------*/
 
 int			echo(char **args);
+
+	/*---------CD--------*/
+int			ft_cd(char **args);
 
 /*****************************************************
  *					  LEXER							 *
@@ -170,6 +188,26 @@ int			parser(t_tokens *tokens, char *str);
  *					  EXPANDER						 *
  *****************************************************/
 
+//expander.c
+t_expander	*expander(t_tokens *tokens, t_env *env, t_executor *exec);
+
+//utils_exp.c
+int			count_pipes(t_tokens *tokens);
+int			len_to_expand(t_tokens *tokens, int *flag);
+void		create_node(t_expander **nodo);
+void		malloc_error(void);
+char		*ft_expander_getenv(t_env *env, char *str);
+
+//var_expander.c
+void		exp_expand_var(t_tokens *tokens, t_env	*env, t_executor *exec);
+
+//split_to_expand.c
+void		exp_split_to_expand(t_tokens *tokens, t_expander **exp);
+
+/*****************************************************
+ *					  EXECUTOR						 *
+ *****************************************************/
+
 # define NONE 0
 # define INP 1
 # define OUTP 2
@@ -180,21 +218,48 @@ int			parser(t_tokens *tokens, char *str);
 # define OUTPIPE 7
 # define HEREDOC_PIPE 8
 # define APPEND_PIPE 9
+# define FD 10
+# define OUTP_FD 11
+# define APPEND_FD 12
+# define INP_FD 13
 
+# define IN 0
+# define OUT 1
 
-//expander.c
-t_expander	*expander(t_tokens	*tokens);
+//executor.c
+int			executor(t_expander *exp, t_env *env, t_tokens *t,
+				t_executor *exec);
 
-//utils_exp.c
+//heredoc.c
+int			heredoc(t_expander *exp);
+
+//exec_utils.c
+char		*get_filename(t_expander *exp);
+int			ft_strcmp(char *s1, char *s2);
+int			get_heredoc_fd(t_expander *exp);
+void		close_fds(t_expander *exp, t_executor *exec);
+void		ft_wait(t_executor *exec, pid_t pid);
+
+//exec_redirections.c
+int			redirect_input(char *filename, t_executor *exec, t_expander *exp);
+int			redirect_output(char *filename, t_expander *exp,
+				t_executor *exec, int fd);
+int			redirect_heredoc(int fd, t_executor *exec);
+
+//our_commands.c
+int			our_cmd(char *command);
+int			command_done(t_expander *exp, t_executor *exec, t_env *env);
+
+//exec_execute.c
+char		*ft_getenv(t_env *env, char	*str);
+int			execute(t_expander *exp, t_executor *exec, t_env *env);
+void		child_process(t_expander *exp, t_executor *exec, t_env *env, int c);
+
+//exec_fds.c
+void		close_command(t_executor *exec);
+void		init_fd(t_executor *exec);
+
+//test.c
 int			count_pipes(t_tokens *tokens);
-int			len_to_expand(t_tokens *tokens, int *flag);
-void		create_node(t_expander **nodo);
-void		malloc_error(void);
-
-//var_expander.c
-void		exp_expand_var(t_tokens *tokens);
-
-//split_to_expand.c
-void		exp_split_to_expand(t_tokens *tokens, t_expander **exp);
 
 #endif
