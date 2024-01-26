@@ -30,6 +30,8 @@ struct	s_expander;
 
 typedef struct s_env
 {
+	char	*key;
+	char	*value;
 	char	**env_cpy;	
 }	t_env;
 
