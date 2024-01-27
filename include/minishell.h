@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/26 17:49:52 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:21:05 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ typedef struct s_word
 	int			type;
 }	t_word;
 
-typedef struct
+/*typedef struct
 {
     char **args; // Array de argumentos del comando
     // Otros campos según sea necesario
-} CommandInfo;
+} CommandInfo;*/
 
 typedef struct s_tokens
 {
@@ -54,7 +54,7 @@ typedef struct s_tokens
 	size_t	size;
 	char	*str;
 	//t_word	*first;
-	t_env	**env;
+	t_env	*env;
 	int		error;
 	int		i_exp;
 }	t_tokens;
@@ -93,7 +93,7 @@ typedef struct s_executor
 size_t		read_variable(char *or_env);
 void		duplicate_env(char **env_cpy, char *or_env);
 char		*cpy_or_env(char *or_env);
-char		*ft_getenv(char *variable, char **env);
+//char		*ft_getenv_a(char *variable, char **env);
 
 
 /*****************************************************
@@ -145,15 +145,15 @@ void		signal_ctrl_c(int sig);
  *					  MAIN							 *
  *****************************************************/
 
-void		execute_command(CommandInfo *command);
+//void		execute_command(CommandInfo *command);
 
 /*****************************************************
- *					  PARSER						 *
+ *					  PARSER VIEJO						 *
  *****************************************************/
 
 	/*--------TOKEN_MANAGER--------*/
 
-t_tokens	*init_token(t_env **env);
+//t_tokens	*init_token(t_env **env);
 int			add_words(t_tokens *tokens, char *str, size_t len, int type);
 void		free_tokens(t_tokens *tokens);
 int			matrixify(t_tokens *tokens);
@@ -184,7 +184,25 @@ int			break_token(t_tokens *tokens, char *str);
 int			is_normal_ch(char ch);
 int			string_tokens(t_tokens *tokens, char *str);
 int			parse_string(t_tokens *tokens, char *str);
-int			parser(t_tokens *tokens, char *str);
+
+//int		parser(t_tokens **tokens, char *str, char **env);
+//t_tokens	*init_token(char **env);
+int			parser(t_tokens **tokens, char *str, t_env *e);
+t_tokens	*init_token(t_env *env);
+
+/*****************************************************
+ *					  PARSER NUEVO					 *
+ *****************************************************/
+
+// Funciones
+int			special_char(char c);
+int			dst_dots(char *str, char dot);
+int			add_words(t_tokens *tokens, char *str, size_t len, int type);
+int			is_marks(t_tokens *tokens, char *str);
+int			is_space(t_tokens *tokens, char *str);
+
+int			matrixify(t_tokens *tokens);
+t_word		*create_word(char *str, size_t len, int type);
 
 /*****************************************************
  *					  EXPANDER						 *

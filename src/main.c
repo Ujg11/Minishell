@@ -6,20 +6,13 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/26 18:01:24 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:06:26 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-void	execute_command(CommandInfo *command, char **env)
+/*void	execute_command(CommandInfo *command, char **env)
 {
 	pid_t	pid;
 	int		status;
@@ -43,9 +36,9 @@ void	execute_command(CommandInfo *command, char **env)
 	{
 		waitpid(pid, &status, 0);
 	}
-}
+}*/
 
-int	main(int argc, char *argv[], char *envp[])
+/*int	main(int argc, char *argv[], char *envp[])
 {
 	char	*input;
 
@@ -120,7 +113,12 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 	}
 	return (0);
-}
+}*/
+
+/*void	destroy_all(t_expander *exp, t_executor *exec)
+{
+	
+}*/
 
 int	main(int argc, char *argv[], char *env[])
 {
@@ -131,19 +129,45 @@ int	main(int argc, char *argv[], char *env[])
 	t_env		*e;
 	int			err;
 
+	(void)argc;
+	(void)argv;
+	tokens = NULL;
 	e = malloc(sizeof(t_env));
 	e->env_cpy = env;
 	exec.env = e;
 	exec.ret_val = 0;
-	signals();
+	//signals();
 	while (1)
-	{
+	{	
 		input = readline(" > ");
 		if (!input)
 			exit(0);
-		err = parser(input, tokens);
+		err = parser(&tokens, input, e);
+		//printf("Len = %d\n", (int)tokens->size);
+		e->env_cpy = env;
 		exp = expander(tokens, e, &exec);
+		/*EL ENV Q SALE ESTA MAL*/
+		
+		/*t_expander *nodo;
+		nodo = exp;
+		int i = 1;
+		int j = 0;
+		while (nodo)
+		{
+			printf("Nodo %d:\nTipo:%d\nLen = %d\n", i, nodo->exp_type, nodo->len);
+			while (j < nodo->len + 1)
+			{
+				printf("%s\n", nodo->exp_matr[j]);
+				j++;
+			}
+			printf("Token = %s\n", nodo->token);
+			j = 0;
+			i++;
+			nodo = nodo->next;
+		}*/
+		
 		err = executor(exp, e, tokens, &exec);
+		//Destroy executor
 	}
-	free_all();
+	//free_all();
 }

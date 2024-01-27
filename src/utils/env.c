@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:19:59 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/22 21:01:20 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:53:04 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*cpy_or_env(char *or_env)
 	return (*env_cpy);
 }
 
-char	*ft_getenv(char *variable, char **env)
+/*char	*ft_getenv(char *variable, char **env)
 {
 	int	i;
 
@@ -60,7 +60,7 @@ char	*ft_getenv(char *variable, char **env)
 		i++;
 	}
 	return (NULL);
-}
+}*/
 
 /*int main(int argc, char **argv, char **envp) 
 {

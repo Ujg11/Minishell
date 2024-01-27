@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:39:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/26 17:59:16 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:32:09 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	executor(t_expander *exp, t_env *env, t_tokens *t, t_executor *exec)
 	t_expander	*node;
 
 	exec->cmd_cont = 0;
-	node = exp;
 	exec->num_pipes = count_pipes(t);
-	init_fd(&exec);
+	node = exp;
+	init_fd(exec);
 	if (heredoc(exp))
 		exec->err_flag = 1;
 	init_exec(node, exec, &pid, env);

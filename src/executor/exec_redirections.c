@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:52:55 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/26 14:58:39 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:30:20 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	redirect_input(char *filename, t_executor *exec, t_expander *exp)
 
 	if (!filename)
 		return (1);
+	printf("Entra redirect output\n");
 	if (!more_redirections(exp, '<') && exec->redirection[IN] == 0)
 	{
 		fd = open (filename, O_RDONLY);
@@ -51,6 +52,7 @@ int	redirect_input(char *filename, t_executor *exec, t_expander *exp)
 		}
 		close(fd);
 		exec->redirection[IN] = 1;
+		printf("Fa la redireccio\n");
 	}
 	return (0);
 }

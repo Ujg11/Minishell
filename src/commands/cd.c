@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:51:53 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/26 17:04:35 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/27 14:15:35 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,14 @@ int	ft_cd(char **args)
 		return (EXIT_FAILURE);
 	i++;
 	pwd_i = getcwd(NULL, 0);
+	printf("Actual PWD = %s\n", getcwd(NULL, 0));
 	if (ft_strncmp(*args, "..", ft_strlen(*args)) == 0)
 		pwd_f = cd_back();
 	else
 		pwd_f = cd_forward(pwd_i, args[i]);
 	flag = chdir(pwd_f);
 	free(pwd_f);
+	printf("Nuevo PWD = %s\n", getcwd(NULL, 0));
 	if (flag == -1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

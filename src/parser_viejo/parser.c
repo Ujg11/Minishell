@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/27 17:43:21 by ojimenez         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:42:35 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,18 @@ int	parse_string(t_tokens *tokens, char *str)
 	return (0);
 }
 
-int	parser(t_tokens **tokens, char *str, t_env *e)
+int	parser(t_tokens *tokens, char *str)
 {
 	if (!*tokens)
 	{
-		*tokens = init_token(e);
-		if (!*tokens)
+		*tokens = init_token(env);
+		if(!*tokens)
 		{
 			printf("Error: oe tu token no funciona\n");
 			return (1);
 		}
 	}
-	//(*tokens)->env->env_cpy = env;
+	(*tokens)->env = env;
 	(*tokens)->error = 0;
 	if (check_input(str))
 		return (42);
@@ -83,6 +83,5 @@ int	parser(t_tokens **tokens, char *str, t_env *e)
 	matrixify(*tokens);
 	if ((*tokens)->error == 0)
 		add_history(str);
-	printf("Fa be el paser\n");
 	return ((*tokens)->error);
 }
