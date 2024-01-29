@@ -2,6 +2,7 @@
 #define TRUE 1 
 #define FALSE 0
 
+
 void    bubble_sort(char **arr, int size, int i)
 {
     if (i == size - 1)
@@ -30,7 +31,7 @@ void    special_export(t_env *env)
 
     while (env->env_cpy[i] != NULL)
     {
-        char    *equal_sign; strchr(env->env_cpy[i], '=');
+        char    *equal_sign = strchr(env->env_cpy[i], '=');
         if (equal_sign != NULL)
         {
             *equal_sign = '\0';
@@ -63,7 +64,6 @@ void    normal_export(char *cmd, t_env *env)
     env->env_cpy[j] = NULL;
     free(patata);
 }
-
 void    ft_export(t_env *env, char **cmd)
 {
     int i = 0;
@@ -73,7 +73,7 @@ void    ft_export(t_env *env, char **cmd)
     {
         while (cmd[i] != NULL)
         {
-            if (strcmo(cmd[i], "0") == 0)
+            if (strcmp(cmd[i], "0") == 0)
                 printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
             else
             {
