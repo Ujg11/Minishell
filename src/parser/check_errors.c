@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 int	is_rd(int c)
 {
 	if (c == '<' || c == '>')
@@ -43,14 +42,11 @@ int	check_rd(char *str, int i)
 		return (1);
 	return (0);
 }
-
-int	check_input(char *str)
+/*int	check_input(char *str)
 {
-	if (str == NULL || *str == '\0')
-		return (1);
 	while (*str)
 	{
-		if ((*str == '>' || *str == '<' || *str == '|') && 
+		if ((str[0] == '>' || str[0] == '<' || str[0] == '|') && 
 			(str[1] == '>' || str[1] == '<' || str[1] == '|' || str[1] == '\0'))
 		{
 			printf("syntax error near unexpected token `%c%c'\n", *str, str[1]);
@@ -74,6 +70,31 @@ int	check_input(char *str)
 		return (1);
 	}
 	return (0);
+}*/
+int check_input(char *str)
+{
+    while (*str)
+    {
+        if ((str[0] == '>' && str[1] == '>' && (str[2] == '\0' || special_char(str[2])))
+            || (str[0] == '<' && str[1] == '<' && (str[2] == '\0' || special_char(str[2])))
+            || (str[0] == '|' && (str[1] == '|' || str[1] == '>' || str[1] == '<' || str[1] == '\0')))
+        {
+            printf("syntax error near unexpected token `%c%c'\n", *str, str[1]);
+            return 1;
+        }
+        else if ((*str == '>' || *str == '<' || *str == '|') && str[1] == '\0')
+        {
+            printf("syntax error near unexpected token `%c'\n", *str);
+            return 1;
+        }
+        str++;
+    }
+    if (*(str - 1) == '\n')
+    {
+        printf("syntax error near unexpected token `newline'\n");
+        return 1;
+    }
+   return 0;
 }
 
 /*int main() 

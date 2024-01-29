@@ -74,7 +74,7 @@ void	child_process(t_expander *exp, t_executor *exec, t_env *env, int c)
 {
 	if (exec->err_flag)
 		exit(1);
-	//*** Mirar senyals ***///
+	signals();
 	if (exec->num_pipes != 0 && c > 0)
 	{
 		close(exec->prev_pipe[OUT]);

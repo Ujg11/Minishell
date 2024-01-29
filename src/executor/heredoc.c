@@ -38,6 +38,7 @@ static int	init_heredoc(t_expander *exp, char *str)
 	{
 		while (42)
 		{
+			signals();
 			line = readline("> ");
 			if (ft_strcmp_hd(line, str) == 0)
 				break ;
