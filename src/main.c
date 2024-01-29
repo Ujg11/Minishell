@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 14:15:14 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:39:49 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,31 +143,35 @@ int	main(int argc, char *argv[], char *env[])
 		input = readline(" > ");
 		if (!input)
 			exit(0);
-		ft_exit(input);
-		err = parser(&tokens, input, e->env_cpy);
-		e->env_cpy = env;
-		exp = expander(tokens, e, &exec);
-		/*EL ENV Q SALE ESTA MAL*/
-		
-		/*t_expander *nodo;
-		nodo = exp;
-		int i = 1;
-		int j = 0;
-		while (nodo)
+		if (input[0] != '\0')
 		{
-			printf("Nodo %d:\nTipo:%d\nLen = %d\n", i, nodo->exp_type, nodo->len);
-			while (j < nodo->len + 1)
+			ft_exit(input);
+			err = parser(&tokens, input, e->env_cpy);
+			e->env_cpy = env;
+			exp = expander(tokens, e, &exec);
+			/*EL ENV Q SALE ESTA MAL*/
+			
+			/*t_expander *nodo;
+			nodo = exp;
+			int i = 1;
+			int j = 0;
+			while (nodo)
 			{
-				printf("%s\n", nodo->exp_matr[j]);
-				j++;
-			}
-			printf("Token = %s\n", nodo->token);
-			j = 0;
-			i++;
-			nodo = nodo->next;
-		}*/
-		err = executor(exp, e, tokens, &exec);
-		destroy_all(&tokens, &exp);
+				printf("Nodo %d:\nTipo:%d\nLen = %d\n", i, nodo->exp_type, nodo->len);
+				while (j < nodo->len + 1)
+				{
+					printf("%s\n", nodo->exp_matr[j]);
+					j++;
+				}
+				printf("Token = %s\n", nodo->token);
+				j = 0;
+				i++;
+				nodo = nodo->next;
+			}*/
+			if (exp->exp_matr[0])
+			err = executor(exp, e, tokens, &exec);
+			destroy_all(&tokens, &exp);
+		}
 	}
 	//free_all();
 }
