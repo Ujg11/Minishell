@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/27 18:06:26 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:15:14 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@
 	
 }*/
 
+
 int	main(int argc, char *argv[], char *env[])
 {
 	char		*input;
@@ -138,12 +139,12 @@ int	main(int argc, char *argv[], char *env[])
 	exec.ret_val = 0;
 	//signals();
 	while (1)
-	{	
+	{
 		input = readline(" > ");
 		if (!input)
 			exit(0);
+		ft_exit(input);
 		err = parser(&tokens, input, e);
-		//printf("Len = %d\n", (int)tokens->size);
 		e->env_cpy = env;
 		exp = expander(tokens, e, &exec);
 		/*EL ENV Q SALE ESTA MAL*/
@@ -165,9 +166,8 @@ int	main(int argc, char *argv[], char *env[])
 			i++;
 			nodo = nodo->next;
 		}*/
-		
 		err = executor(exp, e, tokens, &exec);
-		//Destroy executor
+		destroy_all(&tokens, &exp);
 	}
 	//free_all();
 }

@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/27 13:21:05 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 13:28:23 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ void		duplicate_env(char **env_cpy, char *or_env);
 char		*cpy_or_env(char *or_env);
 //char		*ft_getenv_a(char *variable, char **env);
 
+//destroy.c
+void		destroy_expander(t_expander **exp);
+void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
+
 
 /*****************************************************
  *					  COMMANDS						 *
@@ -102,15 +106,16 @@ char		*cpy_or_env(char *or_env);
 
 
 	/*--------PWD--------*/
-
 void		pwd(void);
 
 	/*--------ECHO-------*/
-
 int			echo(char **args);
 
 	/*---------CD--------*/
 int			ft_cd(char **args);
+
+	/*--------EXIT-------*/
+void		ft_exit(char *str);
 
 /*****************************************************
  *					  LEXER							 *

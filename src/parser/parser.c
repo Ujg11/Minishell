@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/27 17:43:21 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:31:08 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ int	parser(t_tokens **tokens, char *str, t_env *e)
 	matrixify(*tokens);
 	if ((*tokens)->error == 0)
 		add_history(str);
-	printf("Fa be el paser\n");
 	return ((*tokens)->error);
 }

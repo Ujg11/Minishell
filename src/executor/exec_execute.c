@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/27 15:09:00 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:44:07 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	execute(t_expander *exp, t_executor *exec, t_env *env)
 		return (0);
 	else
 		ft_printf("%s: command not found :(\n", exp->exp_matr[0]);
-	printf("Arriba aqui\n");
 	return (127);
 }
 
