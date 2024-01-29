@@ -46,20 +46,30 @@ int	check_rd(char *str, int i)
 
 int	check_input(char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
+	while (*str)
 	{
-		if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		if ((*str == '>' || *str == '<' || *str == '|') && 
+			(str[1] == '>' || str[1] == '<' || str[1] == '|' || str[1] == '\0'))
 		{
-			if (str[i + 1] == '>' || str[i + 1] == '<')
-				ft_printf("syntax error near unexpected token '%c'\n", str[i]);
-			if (str[i + 1] == '|')
-				ft_printf("syntax error near unexpected token '|'\n");
+			printf("syntax error near unexpected token `%c%c'\n", *str, str[1]);
 			return (1);
 		}
-		i++;
+		else if (*str == '|' && (str[1] == '|' || str[1] == '>' || str[1] == '<'))
+		{
+			printf("syntax error near unexpected token `%c%c'\n", *str, str[1]);
+			return (1);
+		}
+		else if ((*str == '>' || *str == '<' || *str == '|') && str[1] == '\0')
+		{
+			printf("syntax error near unexpected token `%c'\n", *str);
+			return (1);
+		}
+		str++;
+	}
+	if (*(str - 1) == '\n')
+	{
+		printf("syntax error near unexpected token `newline'\n");
+		return (1);
 	}
 	return (0);
 }

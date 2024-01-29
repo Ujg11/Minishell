@@ -64,18 +64,18 @@ int	parse_string(t_tokens *tokens, char *str)
 	return (0);
 }
 
-int	parser(t_tokens **tokens, char *str, t_env *e)
+int	parser(t_tokens **tokens, char *str, char **env)
 {
 	if (!*tokens)
 	{
-		*tokens = init_token(e);
+		*tokens = init_token(env);
 		if (!*tokens)
 		{
 			printf("Error: oe tu token no funciona\n");
 			return (1);
 		}
 	}
-	//(*tokens)->env->env_cpy = env;
+	(*tokens)->env = env;
 	(*tokens)->error = 0;
 	if (check_input(str))
 		return (42);

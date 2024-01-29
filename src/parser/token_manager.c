@@ -71,10 +71,7 @@ int	add_words(t_tokens *tokens, char *str, size_t len, int type)
 		free(tokens->words);
 	}
 	new_array[tokens->size - 1] = *new_word;
-	//printf("Word = %s\n", new_word->word);
-	//free(tokens->words);
 	tokens->words = new_array;
-	//free(new_word->word);
 	free(new_word);
 	return (1);
 }
@@ -87,14 +84,14 @@ int	matrixify(t_tokens *tokens)
 	word = tokens->words;
 	if (!word)
 		return (0);
-	tokens->env->env_cpy = (char **)calloc(tokens->size + 1, sizeof(char *));
+	tokens->env = (char **)calloc(tokens->size + 1, sizeof(char *));
 	if (!tokens->env)
 		return (0);
 	i = 0;
 	while (i < tokens->size)
 	{
-		tokens->env->env_cpy[i] = strdup(word[i].word);
-		if (!tokens->env->env_cpy[i])
+		tokens->env[i] = ft_strdup(word[i].word);
+		if (!tokens->env[i])
 			return (0);
 		/*memcpy(tokens->env[i]->env_cpy, word[i].word, word[i].len);
 		tokens->env[i]->env_cpy[word[i].len] = '\0';*/
@@ -110,20 +107,6 @@ void	free_tokens(t_tokens *tokens)
 		free(tokens->words);
 		free(tokens);
 	}
-	/* size_t	i;
-
-	i = 0;
-	if (tokens)
-	{
-		while (i < tokens->size)
-		{
-			free(tokens->words[i].word);
-			i++;
-		}
-		free(tokens->words);
-		tokens->words = NULL;
-		free(tokens);
-	} */
 }
 
 /*int main()

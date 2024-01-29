@@ -28,13 +28,6 @@
 
 struct	s_expander;
 
-typedef struct s_env
-{
-	char	*key;
-	char	*value;
-	char	**env_cpy;	
-}	t_env;
-
 typedef struct s_word
 {
 	char		*word;
@@ -42,22 +35,38 @@ typedef struct s_word
 	int			type;
 }	t_word;
 
+typedef struct s_tokens
+{
+	t_word	*words;
+	size_t	size;
+	char	*str;
+	char 	**env;
+	int		error;
+	int		i_exp;
+}	t_tokens;
+
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+	char	**env_cpy;	
+}	t_env;
+
+typedef struct s_pcs
+{
+	t_tokens	*argv;
+	int			*types;
+}t_pcs;
+
+
+
 /*typedef struct
 {
     char **args; // Array de argumentos del comando
     // Otros campos según sea necesario
 } CommandInfo;*/
 
-typedef struct s_tokens
-{
-	t_word	*words;
-	size_t	size;
-	char	*str;
-	//t_word	*first;
-	t_env	*env;
-	int		error;
-	int		i_exp;
-}	t_tokens;
+
 
 typedef struct s_expander
 {

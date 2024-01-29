@@ -22,7 +22,7 @@ OBJDIR = obj/
 SRC_L = main.c utils/env.c utils/destroy.c \
 		commands/echo.c commands/pwd.c commands/cd.c commands/exit.c\
 	   	parser/check_errors.c parser/token_analysis.c parser/tokens_operations.c \
-		parser/token_manager.c parser/parser.c \
+		parser/token_manager.c parser/parser.c parser/procesos.c \
 		expander/expander.c expander/split_to_expand.c expander/utils_exp.c expander/var_expander.c \
 		executor/executor.c executor/heredoc.c executor/exec_execute.c executor/exec_redirections.c \
 		executor/exec_utils.c executor/our_commands.c executor/exec_fds.c \

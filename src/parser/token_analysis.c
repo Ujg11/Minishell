@@ -26,7 +26,7 @@ int	dst_dots(char *str, char dot)
 	i = 1;
 	if (str[1] == '\0')
 	{
-		printf("Error hay null oe\n");
+		printf("Error: hay null oe\n");
 		return (-1);
 	}
 	if (str[1] == dot)
@@ -35,7 +35,7 @@ int	dst_dots(char *str, char dot)
 		i++;
 	if (str[i] == '\0')
 	{
-		printf("error not closing marks\n");
+		printf("Error: not closing marks\n");
 		return (-1);
 	}
 	return (i - 1);
@@ -55,8 +55,10 @@ int	is_marks(t_tokens *tokens, char *str)
 		return (len);
 	if (str[0] == '"')
 		add_words(tokens, str + 1, len, 2);
-	if (str[0] == '\'')
+	else if (str[0] == '\'')
 		add_words(tokens, str + 1, len, 1);
+	else
+		add_words(tokens,str, len, 0);
 	return (len + 2);
 }
 
