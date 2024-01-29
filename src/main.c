@@ -144,7 +144,7 @@ int	main(int argc, char *argv[], char *env[])
 		if (!input)
 			exit(0);
 		ft_exit(input);
-		err = parser(&tokens, input, e);
+		err = parser(&tokens, input, e->env_cpy);
 		e->env_cpy = env;
 		exp = expander(tokens, e, &exec);
 		/*EL ENV Q SALE ESTA MAL*/

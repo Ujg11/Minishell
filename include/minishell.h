@@ -58,16 +58,6 @@ typedef struct s_pcs
 	int			*types;
 }t_pcs;
 
-
-
-/*typedef struct
-{
-    char **args; // Array de argumentos del comando
-    // Otros campos según sea necesario
-} CommandInfo;*/
-
-
-
 typedef struct s_expander
 {
 	int					exp_type;
@@ -162,15 +152,16 @@ void		signal_ctrl_c(int sig);
 //void		execute_command(CommandInfo *command);
 
 /*****************************************************
- *					  PARSER VIEJO						 *
+ *					  PARSER 						 *
  *****************************************************/
 
 	/*--------TOKEN_MANAGER--------*/
 
-//t_tokens	*init_token(t_env **env);
+t_tokens	*init_token(char **env);
+t_word		*create_word(char *str, size_t len, int type);
 int			add_words(t_tokens *tokens, char *str, size_t len, int type);
-void		free_tokens(t_tokens *tokens);
 int			matrixify(t_tokens *tokens);
+void		free_tokens(t_tokens *tokens);
 
 	/*--------CHECK_ERRORS--------*/
 
@@ -198,25 +189,13 @@ int			break_token(t_tokens *tokens, char *str);
 int			is_normal_ch(char ch);
 int			string_tokens(t_tokens *tokens, char *str);
 int			parse_string(t_tokens *tokens, char *str);
+int			parser(t_tokens **tokens, char *str, char **env);
 
-//int		parser(t_tokens **tokens, char *str, char **env);
-//t_tokens	*init_token(char **env);
-int			parser(t_tokens **tokens, char *str, t_env *e);
-t_tokens	*init_token(t_env *env);
+	/*--------PROCESOS--------*/
 
-/*****************************************************
- *					  PARSER NUEVO					 *
- *****************************************************/
-
-// Funciones
-int			special_char(char c);
-int			dst_dots(char *str, char dot);
-int			add_words(t_tokens *tokens, char *str, size_t len, int type);
-int			is_marks(t_tokens *tokens, char *str);
-int			is_space(t_tokens *tokens, char *str);
-
-int			matrixify(t_tokens *tokens);
-t_word		*create_word(char *str, size_t len, int type);
+void	print_pcs_recur(t_pcs *pcs, size_t index);
+void	print(t_pcs *pcs);
+void	print_pcs_types(t_tokens *tokens, int operator_types[]);
 
 /*****************************************************
  *					  EXPANDER						 *

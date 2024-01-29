@@ -46,6 +46,8 @@ int	check_rd(char *str, int i)
 
 int	check_input(char *str)
 {
+	if (str == NULL || *str == '\0')
+		return (1);
 	while (*str)
 	{
 		if ((*str == '>' || *str == '<' || *str == '|') && 

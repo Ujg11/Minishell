@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-t_tokens	*init_token(t_env *env)
+t_tokens	*init_token(char **env)
 {
 	t_tokens	*tokens;
 
