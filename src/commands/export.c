@@ -1,4 +1,6 @@
 #include "minishell.h"
+#define TRUE 1 
+#define FALSE 0
 
 void    bubble_sort(char **arr, int size, int i)
 {

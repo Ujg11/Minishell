@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:20:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 19:25:08 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:25:50 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	ft_pwd(void)
 	{
 		printf("%s\n", pwd);
 		free(pwd);
+		return (0);
+	}
+	else
+	{
+		printf("Error: Mano el 'pwd' no funca 🤒\n");
+		return (1);
 	}
 	return (0);
 }

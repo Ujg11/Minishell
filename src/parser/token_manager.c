@@ -43,9 +43,7 @@ t_word	*create_word(char *str, size_t len, int type)
 	//word->next = NULL;
 	//word->word[len] = '\0';	
 	while (len-- > 0)
-	{
 		word->word[len] = str[len];
-	}
 	return (word);
 }
 

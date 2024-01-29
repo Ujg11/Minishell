@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 19:49:22 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:26:14 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,6 @@ typedef struct s_executor
  *						UTILS						 *
  *****************************************************/
 
-	/*--------ENV--------*/
-
-size_t		read_variable(char *or_env);
-void		duplicate_env(char **env_cpy, char *or_env);
-char		*cpy_or_env(char *or_env);
-//char		*ft_getenv_a(char *variable, char **env);
-
 //destroy.c
 void		destroy_expander(t_expander **exp);
 void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
@@ -115,6 +108,25 @@ int			ft_cd(char **args);
 
 	/*--------EXIT-------*/
 int			ft_exit(char **argv, int len);
+
+	/*--------EXPORT UTILS-----*/
+int			mod_strcmp(char *cmd, char *env);
+void		replace_value(char *cmd, t_env *env);
+void		var_exist(char *cmd, t_env *env);
+
+	/*--------EXPORT-----*/
+void		bubble_sort(char **arr, int size, int i);
+void		print_special_export(t_env *env, int count, int i);
+void		special_export(t_env *env);
+void		normal_export(char *cmd, t_env *env);
+void		ft_export(t_env *env, char **cmd);
+
+	/*--------UNSET------*/
+void		ft_unset(char *variable, t_env *env);
+
+	/*--------ENV--------*/
+void		ft_env(t_env *env);
+void		hola(char **env, t_env *env_hola);
 
 /*****************************************************
  *					  LEXER							 *
