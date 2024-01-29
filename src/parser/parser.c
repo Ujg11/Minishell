@@ -26,7 +26,7 @@ int	is_normal_ch(char ch)
 	return (0);
 }
 
-int	string_tokens(t_tokens *tokens, char *str)
+/*int	string_tokens(t_tokens *tokens, char *str)
 {
 	int	i;
 	int	command_found;
@@ -38,7 +38,32 @@ int	string_tokens(t_tokens *tokens, char *str)
 	if (!command_found)
 		add_words(tokens, str, i, 0);
 	return (i);
+}*/
+int string_tokens(t_tokens *tokens, char *str)
+{
+    int i;
+    int command_found;
+
+    i = 0;
+    command_found = 0;
+    while (str[i] && !is_normal_ch(str[i]))
+        i++;
+
+    if (!command_found)
+    {
+        if (i >= 2 && str[0] == '$' && str[1] == '?' && is_normal_ch(str[i]))
+        {
+            add_words(tokens, str, i, 0);
+        }
+        else
+        {
+            add_words(tokens, str, i, 0);
+        }
+    }
+    return i;
 }
+
+
 
 int	parse_string(t_tokens *tokens, char *str)
 {

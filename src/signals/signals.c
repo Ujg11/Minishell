@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-/*void	signal_ctrl_c(int sig)
+void	signal_ctrl_c(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -28,4 +28,4 @@ void	signals(void)
 	//rl_catch_signals = 0;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_ctrl_c);
-}*/
+}

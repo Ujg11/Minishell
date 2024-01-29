@@ -137,7 +137,7 @@ int	main(int argc, char *argv[], char *env[])
 	e->env_cpy = env;
 	exec.env = e;
 	exec.ret_val = 0;
-	//signals();
+	signals();
 	while (1)
 	{
 		input = readline(" > ");
@@ -149,9 +149,8 @@ int	main(int argc, char *argv[], char *env[])
 			err = parser(&tokens, input, e->env_cpy);
 			e->env_cpy = env;
 			exp = expander(tokens, e, &exec);
-			/*EL ENV Q SALE ESTA MAL*/
 			
-			/*t_expander *nodo;
+			t_expander *nodo;
 			nodo = exp;
 			int i = 1;
 			int j = 0;
@@ -167,11 +166,14 @@ int	main(int argc, char *argv[], char *env[])
 				j = 0;
 				i++;
 				nodo = nodo->next;
-			}*/
+			}
 			if (exp->exp_matr[0])
 			err = executor(exp, e, tokens, &exec);
 			destroy_all(&tokens, &exp);
 		}
+		//else
+		//	free(input);
 	}
+	
 	//free_all();
 }
