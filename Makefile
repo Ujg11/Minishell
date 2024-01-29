@@ -6,12 +6,12 @@
 #    By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 18:51:28 by agrimald          #+#    #+#              #
-#    Updated: 2024/01/29 21:27:13 by ojimenez         ###   ########.fr        #
+#    Updated: 2024/01/29 21:44:25 by ojimenez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
 
 INCS = -I./include/ -I./include/Libft -I$(HOME)/.brew/opt/readline/include
 LIBFTA = -L./include/Libft -lft

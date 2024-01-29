@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 20:54:41 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 22:06:08 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	command_execute(t_expander *exp, t_env *env)
 
 	i = 0;
 	all_path = ft_getenv(env, "PATH=");
+	printf("Path = %s\n", all_path);
 	if (!all_path)
 		return (exec_no_path(exp));
 	paths = ft_split(all_path, ':');
@@ -53,6 +54,11 @@ static int	command_execute(t_expander *exp, t_env *env)
 		cmd_path = ft_strjoin(ft_strjoin(paths[i], "/"), exp->exp_matr[0]);
 		comp = execve(cmd_path, exp->exp_matr, NULL);
 		free(cmd_path);
+		if (comp == 0)
+		{
+			free(paths);
+			return (0);
+		}
 		i++;
 	}
 	free(paths);
