@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 16:39:49 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:22:13 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,8 @@ int	main(int argc, char *argv[], char *env[])
 			err = parser(&tokens, input, e->env_cpy);
 			e->env_cpy = env;
 			exp = expander(tokens, e, &exec);
-			/*EL ENV Q SALE ESTA MAL*/
 			
-			/*t_expander *nodo;
+			t_expander *nodo;
 			nodo = exp;
 			int i = 1;
 			int j = 0;
@@ -167,11 +166,12 @@ int	main(int argc, char *argv[], char *env[])
 				j = 0;
 				i++;
 				nodo = nodo->next;
-			}*/
+			}
 			if (exp->exp_matr[0])
 			err = executor(exp, e, tokens, &exec);
 			destroy_all(&tokens, &exp);
 		}
+		else
+			free(input);
 	}
-	//free_all();
 }

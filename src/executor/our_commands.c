@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/25 12:52:27 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:18:38 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	else if (!ft_strcmp(exp->exp_matr[0], "unset"))
 		return (ft_unset());
 	else if (!ft_strcmp(exp->exp_matr[0], "env"))
-		return (ft_env());
-	else if (!ft_strcmp(exp->exp_matr[0], "exit"))
-		return (ft_exit());*/
+		return (ft_env());*/
+	//else if (!ft_strcmp(exp->exp_matr[0], "exit"))
+	//	return (ft_exit(exp->exp_matr[0]));
 	return (127);
 }
 
