@@ -48,21 +48,15 @@ int string_tokens(t_tokens *tokens, char *str)
     command_found = 0;
     while (str[i] && !is_normal_ch(str[i]))
         i++;
-
     if (!command_found)
     {
         if (i >= 2 && str[0] == '$' && str[1] == '?' && is_normal_ch(str[i]))
-        {
             add_words(tokens, str, i, 0);
-        }
         else
-        {
             add_words(tokens, str, i, 0);
-        }
     }
     return i;
 }
-
 
 
 int	parse_string(t_tokens *tokens, char *str)

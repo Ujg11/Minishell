@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	pwd(void)
+int	pwd(void)
 {
 	char	*pwd;
 
@@ -27,6 +27,12 @@ void	pwd(void)
 	{
 		printf("%s\n", pwd);
 		free(pwd);
+		return (0);
+	}
+	else
+	{
+		printf("Error: Mano el 'pwd' no funca 🤒\n");
+		return (1);
 	}
 }
 

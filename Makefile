@@ -19,8 +19,8 @@ READLINE = -L$(HOME)/.brew/opt/readline/lib -lreadline
 SRCDIR = src/
 OBJDIR = obj/
 
-SRC_L = main.c utils/env.c utils/destroy.c \
-		commands/echo.c commands/pwd.c commands/cd.c commands/exit.c\
+SRC_L = main.c utils/destroy.c \
+		commands/echo.c commands/pwd.c commands/cd.c commands/exit.c commands/env.c \
 	   	parser/check_errors.c parser/token_analysis.c parser/tokens_operations.c \
 		parser/token_manager.c parser/parser.c parser/procesos.c \
 		expander/expander.c expander/split_to_expand.c expander/utils_exp.c expander/var_expander.c \
