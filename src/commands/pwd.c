@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:20:28 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/24 21:23:11 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:25:08 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	pwd(void)
+int	ft_pwd(void)
 {
 	char	*pwd;
 
@@ -28,6 +28,7 @@ void	pwd(void)
 		printf("%s\n", pwd);
 		free(pwd);
 	}
+	return (0);
 }
 
 /*int main(int argc, char **argv)

@@ -3,50 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:42:36 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/23 21:36:54 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:03:26 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../../include/minishell.h"
 #include "minishell.h"
 
-/*#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>*/
-
-/*int	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (*s++)
-		i++;
-	return (i);
-}
-
-int	ft_strncmp(char *s1, char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n && (*s1 != '\0' || *s2 != '\0'))
-	{
-		if (*s1 != *s2)
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		s1++;
-		s2++;
-		i++;
-	}
-	return (0);
-}*/
-
-int	echo(char **args)
+/*int	ft_echo(char **args)
 {
 	bool	print_line;
 
@@ -69,28 +35,46 @@ int	echo(char **args)
 	if (print_line)
 		printf("\n");
 	return (EXIT_SUCCESS);
-}
-
-/*int	main(int argc, char **argv)
-{
-	(void)argc;
-	return echo(argv + 1);
 }*/
 
-	/*	TEST MANUAL */
-
-/*
-bash-3.2$ echo hola
-hola ✅
-bash-3.2$ echo -n hola
-holabash-3.2$ ❌
-bash-3.2$ echo -n-n hola
--n-n hola ✅
-bash-3.2$ echo -----n hola
------n hola ✅
-bash-3.2$ echo -nnnnnn hola
-holabash-3.2$ ❌
-bash-3.2$ echo nnnnn hola
-nnnnn hola ✅
-bash-3.2$
-*/
+int ft_echo(const char **args)
+{
+	    bool print_line = true;
+    args++; // Avanzar al primer argumento después de "echo"
+    if (*args && strncmp(*args, "-n", strlen("-n") + 1) == 0)
+    {
+        print_line = false;
+        args++;
+    }
+    while (*args != NULL)
+    {
+        const char *arg = *args;
+        size_t arg_len = strlen(arg);
+        if (arg_len >= 2 && ((arg[0] == '"' && arg[arg_len - 1] == '"') || (arg[0] == '\'' && arg[arg_len - 1] == '\'')))
+        {
+            // Si la cadena comienza y termina con comillas simples o dobles, imprímela sin las comillas
+            printf("%.*s", (int)arg_len - 2, arg + 1);
+        }
+        else
+        {
+            // Si no, imprimir la cadena normalmente
+            // Eliminar comillas dentro de la cadena
+            const char *quote = strpbrk(arg, "\"\'");
+            while (quote != NULL)
+            {
+                size_t chunk_len = quote - arg;
+                printf("%.*s", (int)chunk_len, arg);
+                arg = quote + 1; // Saltar la comilla encontrada
+                quote = strpbrk(arg, "\"\'");
+            }
+            // Imprimir el resto de la cadena
+            printf("%s", arg);
+        }
+        args++;
+        if (*args != NULL)
+            printf(" ");
+    }
+    if (print_line)
+        printf("\n");
+    return (0);
+}

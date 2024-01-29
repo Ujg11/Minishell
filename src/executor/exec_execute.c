@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 12:44:07 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 20:54:41 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	child_process(t_expander *exp, t_executor *exec, t_env *env, int c)
 {
 	if (exec->err_flag)
 		exit(1);
-	signals();
+	//signals();
 	if (exec->num_pipes != 0 && c > 0)
 	{
 		close(exec->prev_pipe[OUT]);

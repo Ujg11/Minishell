@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:08:43 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/22 15:03:28 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:12:39 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	init_heredoc(t_expander *exp, char *str)
 	{
 		while (42)
 		{
-			signals();
+			//signals();
 			line = readline("> ");
 			if (ft_strcmp_hd(line, str) == 0)
 				break ;

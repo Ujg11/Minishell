@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 13:28:23 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:49:22 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,16 @@ void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
 
 
 	/*--------PWD--------*/
-void		pwd(void);
+int			ft_pwd(void);
 
 	/*--------ECHO-------*/
-int			echo(char **args);
+int			ft_echo(const char **args);
 
 	/*---------CD--------*/
 int			ft_cd(char **args);
 
 	/*--------EXIT-------*/
-void		ft_exit(char *str);
+int			ft_exit(char **argv, int len);
 
 /*****************************************************
  *					  LEXER							 *

@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 17:18:38 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:20:15 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,50 +57,20 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	exec->redirection[IN] = 0;
 	exec->redirection[OUT] = 0;
 	pass_tolower(exp);
-	env->env_cpy[0] = env->env_cpy[0] + 1 - 1;
-	/*if (!ft_strcmp(exp->exp_matr[0], "echo"))
-		return (ft_echo());*/
+	(void)env;
+	if (!ft_strcmp(exp->exp_matr[0], "echo"))
+		return (ft_echo((const char **)exp->exp_matr));
 	if (!ft_strcmp(exp->exp_matr[0], "cd"))
 		return (ft_cd(exp->exp_matr));
-	/*else if (!ft_strcmp(exp->exp_matr[0], "pwd"))
+	else if (!ft_strcmp(exp->exp_matr[0], "pwd"))
 		return (ft_pwd());
-	else if (!ft_strcmp(exp->exp_matr[0], "export"))
-		return (ft_export());
-	else if (!ft_strcmp(exp->exp_matr[0], "unset"))
-		return (ft_unset());
-	else if (!ft_strcmp(exp->exp_matr[0], "env"))
-		return (ft_env());*/
-	//else if (!ft_strcmp(exp->exp_matr[0], "exit"))
-	//	return (ft_exit(exp->exp_matr[0]));
+//	else if (!ft_strcmp(exp->exp_matr[0], "export"))
+//		return (ft_export());
+//	else if (!ft_strcmp(exp->exp_matr[0], "unset"))
+//		return (ft_unset());
+//	else if (!ft_strcmp(exp->exp_matr[0], "env"))
+//		return (ft_env());
+	else if (!ft_strcmp(exp->exp_matr[0], "exit"))
+		return (ft_exit(exp->exp_matr, exp->len));
 	return (127);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
