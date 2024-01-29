@@ -112,7 +112,7 @@ void		ft_exit(char *str);
 	/*--------EXPORT UTILS-----*/
 int			mod_strcmp(char *cmd, char *env);
 void		replace_value(char *cmd, t_env *env);
-void		var_exist(char *cmd, t_env *env);
+int		var_exist(char *cmd, t_env *env);
 
 	/*--------EXPORT-----*/
 void		bubble_sort(char **arr, int size, int i);

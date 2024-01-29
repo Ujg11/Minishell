@@ -14,7 +14,7 @@ int mod_strcmp(char *cmd, char *env)
             return (FALSE);
         i++;
     }
-    if (cmd[i] = '\0' && (env[i] == '\0' || env[i] == '='))
+    if (cmd[i] == '\0' && (env[i] == '\0' || env[i] == '='))
         return (TRUE);
     return (FALSE);
 }
@@ -35,7 +35,7 @@ void    replace_value(char *cmd, t_env *env)
     }
 }
 
-void    var_exist(char *cmd, t_env *env)
+int    var_exist(char *cmd, t_env *env)
 {
     int i = 0;
 
