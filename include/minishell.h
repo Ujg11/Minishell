@@ -96,7 +96,6 @@ void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
  *					  COMMANDS						 *
  *****************************************************/
 
-
 	/*--------PWD--------*/
 int			ft_pwd(void);
 
@@ -112,7 +111,7 @@ int			ft_exit(char **argv, int len);
 	/*--------EXPORT UTILS-----*/
 int			mod_strcmp(char *cmd, char *env);
 void		replace_value(char *cmd, t_env *env);
-int		var_exist(char *cmd, t_env *env);
+int			var_exist(char *cmd, t_env *env);
 
 	/*--------EXPORT-----*/
 void		bubble_sort(char **arr, int size, int i);

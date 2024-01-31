@@ -21,7 +21,7 @@ int	is_rd(int c)
 
 int	is_redirection(char *str, int i)
 {
-	if (str[i + 1] == '\0')
+	if (!str[i + 1])
 		return (1);
 	if (i < 2)
 		return (0);
@@ -34,50 +34,45 @@ int	is_redirection(char *str, int i)
 
 int	check_rd(char *str, int i)
 {
-	if (str[i] == '<' || str[i] == '>')
-		return (1);
-	if (str[i + 1] == '\0')
-		return (1);
-	if (str[i - 1] == '<' || str[i - 1] == '>')
-		return (1);
-	return (0);
+    if (i == 0)
+        return (1);
+    if (!str[i + 1])
+        return (1);
+    if (str[i - 1] == '<' || str[i - 1] == '>')
+        return (1);
+    return (0);
 }
 int	check_input(char *str)
 {
-    while (*str)
-    {
-        if ((*str == '>' || *str == '<' || *str == '|') &&
-            (str[1] == '>' || str[1] == '<' || str[1] == '|' || str[1] == '\0'))
-        {
-            if (str[1] == '>' || str[1] == '<') {
-                printf("syntax error near unexpected token '%c%c'\n", *str, str[1]);
-                return 1;
-            }
-            else {
-                printf("syntax error near unexpected token '%c'\n", *str);
-                return 1;
-            }
-        }
-        else if (*str == '|' && (str[1] == '|' || str[1] == '>' || str[1] == '<'))
-        {
-            printf("syntax error near unexpected token '%c%c'\n", *str, str[1]);
-            return 1;
-        }
-        else if ((*str == '>' || *str == '<' || *str == '|') && str[1] == '\0')
-        {
-            printf("syntax error near unexpected token '%c'\n", *str);
-            return 1;
-        }
+    int i = 0;
+    int error = 0;
 
-        str++;
-    }
-    if (*(str - 1) == '\n')
+    while (str[i])
     {
-        printf("syntax error near unexpected token `newline'\n");
-        return 1;
+        if (str[i] == '>')
+        {
+            if (is_redirection(str, i))
+                error = printf("syntax error near unexpected token `>'\n");
+            else if (str[i + 1] == '>' && str[i + 2] == '>')
+                error = printf("syntax error near unexpected token '>>'\n");
+        }
+        else if (str[i] == '|')
+        {
+            if (check_rd(str, i))
+                error = printf("syntax error near unexpected token `|'\n");
+        }
+        else if (str[i] == '<')
+        {
+            if (is_redirection(str, i))
+                error = printf("syntax error near unexpected token `<'\n");
+            else if (str[i + 1] == '<' && str[i + 2] == '<')
+                error = printf("syntax error near unexpected token '<<'\n");
+        }
+        if (error != 0)
+            return (1);
+        i++;
     }
-
-    return 0;
+    return (0);
 }
 
 

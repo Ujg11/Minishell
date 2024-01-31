@@ -14,6 +14,11 @@
 
 int	break_token(t_tokens *tokens, char *str)
 {
+	if (ft_strncmp(str, ">>", 2) == 0 || ft_strncmp(str, "<<", 2) == 0)
+	{
+		add_words(tokens, str, 2, 5);
+		return (2);
+	}
 	add_words(tokens, str, 1, 3);
 	return (1);
 }
