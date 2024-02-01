@@ -118,36 +118,14 @@ void		bubble_sort(char **arr, int size, int i);
 void		print_special_export(t_env *env, int count, int i);
 void		special_export(t_env *env);
 void		normal_export(char *cmd, t_env *env);
-void		ft_export(t_env *env, char **cmd);
+int			ft_export(char **cmd, t_env *env);
 
 	/*--------UNSET------*/
-void		ft_unset(char *variable, t_env *env);
+int			ft_unset(char *variable, t_env *env);
 
 	/*--------ENV--------*/
-void		ft_env(t_env *env);
+int			ft_env(t_env *env);
 void		hola(char **env, t_env *env_hola);
-
-/*****************************************************
- *					  LEXER							 *
- *****************************************************/
-
-	/*--------TOKENS_LEXER--------*/
-
-/*bool	special_char(char corr);
-size_t	get_char_special(char *token, char next_special_char);
-char	get_next_char(char *token);
-bool	search_char(char *token);*/
-
-/*****************************************************
- *					  PARSER						 *
- *****************************************************/
-
-	/*--------CHECK_ERRORS--------*/
-
-/*int		is_rd(int c);
-int		is_redirection(char *str, int i);
-int		check_rd(char*str, int i);
-int		check_input(char *str);*/
 
 /*****************************************************
  *					  SIGNALS						 *

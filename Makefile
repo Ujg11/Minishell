@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+         #
+#    By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 18:51:28 by agrimald          #+#    #+#              #
-#    Updated: 2024/01/29 21:44:25 by ojimenez         ###   ########.fr        #
+#    Updated: 2024/02/01 20:31:38 by agrimald         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 
 INCS = -I./include/ -I./include/Libft -I$(HOME)/.brew/opt/readline/include
 LIBFTA = -L./include/Libft -lft
@@ -20,7 +20,8 @@ SRCDIR = src/
 OBJDIR = obj/
 
 SRC_L = main.c utils/destroy.c \
-		commands/echo.c commands/pwd.c commands/cd.c commands/exit.c commands/env.c \
+		commands/echo.c commands/pwd.c commands/cd.c commands/exit.c \
+		commands/env.c commands/export.c commands/unset.c commands/export_utils.c \
 	   	parser/check_errors.c parser/token_analysis.c parser/tokens_operations.c \
 		parser/token_manager.c parser/parser.c parser/procesos.c \
 		expander/expander.c expander/split_to_expand.c expander/utils_exp.c expander/var_expander.c \

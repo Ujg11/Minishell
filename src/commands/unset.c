@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/01 18:52:41 by agrimald          #+#    #+#             */
+/*   Updated: 2024/02/01 18:52:42 by agrimald         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void    ft_unset(char *variable, t_env *env)
+int    ft_unset(char *variable, t_env *env)
 {
     int i = 0;
     char **env_ptr = env->env_cpy;
@@ -14,8 +26,9 @@ void    ft_unset(char *variable, t_env *env)
                 env_ptr[i] = env_ptr[i + 1];
                 i++;
             }
-            return;
+            return (1);
         }
         i++;
     }
+    return (0);
 }

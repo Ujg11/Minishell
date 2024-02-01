@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:14:52 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/27 12:53:23 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:02:20 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int	is_rd(int c)
 
 int	is_redirection(char *str, int i)
 {
-	if (!str[i + 1])
-		return (1);
-	if (i < 2)
+		if (i < 2)
 		return (0);
+        if (!str[i + 1])
+		return (1);
+
+    if (str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>')
+        return 1;
 	if (is_rd(str[i - 1]) && is_rd(str[i - 2]) && is_rd(str[i]))
 		return (1);
 	if (str[i] == '<' && str[i - 1] == '>')

@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/01 18:52:19 by agrimald          #+#    #+#             */
+/*   Updated: 2024/02/01 20:34:00 by agrimald         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #define TRUE 1 
 #define FALSE 0
 
-
 void    bubble_sort(char **arr, int size, int i)
 {
     if (i == size - 1)
-    return;
-    if (strcmp(arr[i], arr[i + 1]) > 0)
+        return;
+    if (ft_strcmp(arr[i], arr[i + 1]) > 0)
     {
         char *temp = arr[i];
         arr[i] = arr[i + 1];
@@ -27,6 +38,7 @@ void   print_special_export(t_env *env, int count, int i)
 
 void    special_export(t_env *env)
 {
+    printf("Executing special export\n");
     int i = 0;
 
     while (env->env_cpy[i] != NULL)
@@ -64,17 +76,24 @@ void    normal_export(char *cmd, t_env *env)
     env->env_cpy[j] = NULL;
     free(patata);
 }
-void    ft_export(t_env *env, char **cmd)
+int    ft_export(char **cmd, t_env *env)
 {
     int i = 0;
     if (cmd[0] == NULL)
+    {
+    printf("Executing export\n");
         special_export(env);
+        return (0);
+    }
     else
     {
         while (cmd[i] != NULL)
         {
             if (strcmp(cmd[i], "0") == 0)
+            {
                 printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
+                return (1);
+            }
             else
             {
                 if (var_exist(cmd[i], env) == TRUE)
@@ -85,4 +104,5 @@ void    ft_export(t_env *env, char **cmd)
             i++;
         }
     }
+    return (0);
 }

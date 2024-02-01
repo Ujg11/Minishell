@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	ft_env(t_env *count)
+int	ft_env(t_env *count)
 {
 	int i = 0;
 
@@ -21,6 +21,7 @@ void	ft_env(t_env *count)
 		printf("%s\n", count->env_cpy[i]);
 		i++;
 	}
+	return (0);
 }
 
 void	hola(char **env, t_env *env_hola)
