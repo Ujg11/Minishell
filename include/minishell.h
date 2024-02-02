@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 21:26:14 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:05:35 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
 int			ft_pwd(void);
 
 	/*--------ECHO-------*/
-int			ft_echo(const char **args);
+int			ft_echo(char **args);
 
 	/*---------CD--------*/
 int			ft_cd(char **args);

@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/01 20:33:32 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:06:01 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	pass_tolower(exp);
 	//(void)env;
 	if (!ft_strcmp(exp->exp_matr[0], "echo"))
-		return (ft_echo((const char **)exp->exp_matr));
+		return (ft_echo((char **)exp->exp_matr));
 	if (!ft_strcmp(exp->exp_matr[0], "cd"))
 		return (ft_cd(exp->exp_matr));
 	else if (!ft_strcmp(exp->exp_matr[0], "pwd"))

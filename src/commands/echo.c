@@ -3,78 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:42:36 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 21:03:26 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:04:40 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*int	ft_echo(char **args)
+int ft_echo(char **argv)
 {
-	bool	print_line;
+    int i;
+    int n_flag;
 
-	print_line = true;
-	if (ft_strncmp(*args, "echo", ft_strlen(*args)) != 0)
-		return (EXIT_FAILURE);
-	args++;
-	if (*args && ft_strncmp(*args, "-n", ft_strlen("-n") + 1) == 0)
-	{
-		print_line = false;
-		args++;
-	}
-	while (*args != NULL)
-	{
-		printf("%s", *args);
-		args++;
-		if (*args != NULL)
-			printf(" ");
-	}
-	if (print_line)
-		printf("\n");
-	return (EXIT_SUCCESS);
-}*/
-
-int ft_echo(const char **args)
-{
-	    bool print_line = true;
-    args++; // Avanzar al primer argumento después de "echo"
-    if (*args && strncmp(*args, "-n", strlen("-n") + 1) == 0)
+    i = 1;
+    n_flag = 0;
+    if (argv[i] && ft_strncmp(argv[i], "-n", 2) == 0)
     {
-        print_line = false;
-        args++;
+        n_flag = 1;
+        i++;
     }
-    while (*args != NULL)
+    while (argv[i])
     {
-        const char *arg = *args;
-        size_t arg_len = strlen(arg);
-        if (arg_len >= 2 && ((arg[0] == '"' && arg[arg_len - 1] == '"') || (arg[0] == '\'' && arg[arg_len - 1] == '\'')))
-        {
-            // Si la cadena comienza y termina con comillas simples o dobles, imprímela sin las comillas
-            printf("%.*s", (int)arg_len - 2, arg + 1);
-        }
-        else
-        {
-            // Si no, imprimir la cadena normalmente
-            // Eliminar comillas dentro de la cadena
-            const char *quote = strpbrk(arg, "\"\'");
-            while (quote != NULL)
-            {
-                size_t chunk_len = quote - arg;
-                printf("%.*s", (int)chunk_len, arg);
-                arg = quote + 1; // Saltar la comilla encontrada
-                quote = strpbrk(arg, "\"\'");
-            }
-            // Imprimir el resto de la cadena
-            printf("%s", arg);
-        }
-        args++;
-        if (*args != NULL)
+        printf("%s", argv[i]);
+        if (argv[i + 1])
             printf(" ");
+        i++;
     }
-    if (print_line)
+    if (!n_flag)
         printf("\n");
     return (0);
 }
