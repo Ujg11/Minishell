@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 11:12:49 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:13:34 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_pcs
 {
 	t_tokens	*argv;
 	int			*types;
-}t_pcs;
+}	t_pcs;
 
 typedef struct s_expander
 {
@@ -90,7 +90,8 @@ typedef struct s_executor
 
 //destroy.c
 void		destroy_expander(t_expander **exp);
-void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
+//void		destroy_all(t_tokens **t, t_expander **exp);
+void		destroy_all(t_tokens **t, t_expander **exp, char *input);
 
 
 /*****************************************************

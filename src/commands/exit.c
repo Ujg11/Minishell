@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:50:44 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 21:21:12 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:59:23 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_num(char **argv)
 	{
 		if (is_a_num(num[i]))
 		{
-			printf("exit: %s: numeric argument required\n", num);//sale
+			printf("exit: %s: numeric argument required\n", num);
 			return (255);
 		}
 		i++;
@@ -49,9 +49,10 @@ int	ft_exit(char **argv, int len)
 		exit (0);
 	if (len > 2)
 	{
-		printf("exit: too many arguments\n");//no sale
+		printf("exit: too many arguments\n");
 		return (1);
 	}
 	ex = check_num(argv);
+	printf("exit\n");
 	exit(ex);
 }
