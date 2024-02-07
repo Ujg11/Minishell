@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 17:27:01 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:44:41 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argv;
 	input = NULL;
 	tokens = NULL;
+	printf("entra\n");
 	e = malloc(sizeof(t_env));
 	e->env_cpy = env;
 	exec.env = e;
@@ -66,7 +67,7 @@ int	main(int argc, char *argv[], char *env[])
 			{
 				//Aqui el nodo
 
-				//if (exp->exp_matr[0])
+				if (exp->exp_matr[0])
 					err = executor(exp, e, tokens, &exec);
 				destroy_all(&tokens, &exp, input);
 			}

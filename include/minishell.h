@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 16:49:37 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:36:41 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int			ft_exit(char **argv, int len);
 
 	/*--------EXPORT UTILS-----*/
 int			mod_strcmp(char *cmd, char *env);
+int    		check_env_without_value(char *cmd);
 void		replace_value(char *cmd, t_env *env);
 int			var_exist(char *cmd, t_env *env);
 

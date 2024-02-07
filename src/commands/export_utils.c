@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:29 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/02 18:48:12 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:36:23 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ int mod_strcmp(char *cmd, char *env)
     return (FALSE);
 }
 
+int    check_env_without_value(char *cmd)
+{
+    int i = 0;
+    
+    while (cmd[i] != '\0')
+    {
+        if (cmd[i] == '=')
+            return 1;
+        i++;
+    }
+    return 0;
+}
 void    replace_value(char *cmd, t_env *env)
 {
     int i = 0;

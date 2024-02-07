@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:37:06 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/28 11:18:56 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:35:58 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

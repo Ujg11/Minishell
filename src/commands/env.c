@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:19:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/27 11:53:04 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:39:41 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	ft_env(t_env *count)
 {
-	int i = 0;
+	int i = -1;
 
-	while (count->env_cpy[i] != NULL)
+	while (count->env_cpy[++i] != NULL)
 	{
+		if (check_env_without_value(count->env_cpy[i]) == 0)
+			continue;
 		printf("%s\n", count->env_cpy[i]);
-		i++;
 	}
 	return (0);
 }
