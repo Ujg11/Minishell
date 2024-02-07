@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 12:31:08 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:41:24 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int string_tokens(t_tokens *tokens, char *str)
     return i;
 }
 
-
 int	parse_string(t_tokens *tokens, char *str)
 {
 	int	i;
@@ -90,6 +89,7 @@ int	parse_string(t_tokens *tokens, char *str)
 
 int	parser(t_tokens **tokens, char *str, char **env)
 {
+	str = delete_space(str);
 	if (!*tokens)
 	{
 		*tokens = init_token(env);

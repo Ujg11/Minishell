@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 22:06:08 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:45:40 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static int	command_execute(t_expander *exp, t_env *env)
 	i = 0;
 	all_path = ft_getenv(env, "PATH=");
 	printf("Path = %s\n", all_path);
-	if (!all_path)
+	//estaba puesto que si no existia all_path se ejecutara comando, cosa que no iba a pasar
+	// ya que all_path siempre existira porque es el env a cambio le cambie el if 
+	// para que comprobara que el comando actual ya existe y se puede ejecutar
+	if (access(exp->exp_matr[0], F_OK | X_OK) == 0)
 		return (exec_no_path(exp));
 	paths = ft_split(all_path, ':');
 	while (paths[i])

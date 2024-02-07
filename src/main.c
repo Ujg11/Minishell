@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/02 17:33:54 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:30:10 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	main(int argc, char *argv[], char *env[])
 			//ft_exit(input);
 			err = parser(&tokens, input, e->env_cpy);
 			//print_tokens(tokens);
-			e->env_cpy = env;
+			//e->env_cpy = env; ESTO NOOOO VAAAAA
 			exp = expander(tokens, e, &exec);
 			if (exp == NULL)
 			{
 				printf("Error aqui\n");
 				continue;
 			}
-			printf("ERROR = %d\n", err);
+			//printf("ERROR = %d\n", err);
 			if (err == 0)
 			{
 				/*t_expander *nodo;

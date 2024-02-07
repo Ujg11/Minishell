@@ -6,13 +6,11 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:19 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/01 20:34:00 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:25:43 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#define TRUE 1 
-#define FALSE 0
 
 void    bubble_sort(char **arr, int size, int i)
 {
@@ -62,26 +60,27 @@ void    normal_export(char *cmd, t_env *env)
     char **patata;
 
     patata = env->env_cpy;
-    while (env->env_cpy[i] != NULL)
+    while (patata[i] != NULL)
         i++;
     env->env_cpy = calloc(sizeof(char *), i + 2);
     int j = 0;
     while (j < i)
     {
         env->env_cpy[j] = strdup(patata[j]);
-        free(patata[j]);
+        //free(patata[j]);
         j++;
     }
     env->env_cpy[j++] = strdup(cmd);
     env->env_cpy[j] = NULL;
-    free(patata);
+    //free(patata);
 }
+
 int    ft_export(char **cmd, t_env *env)
 {
     int i = 0;
     if (cmd[0] == NULL)
     {
-    printf("Executing export\n");
+        printf("Executing export\n");
         special_export(env);
         return (0);
     }
@@ -106,3 +105,23 @@ int    ft_export(char **cmd, t_env *env)
     }
     return (0);
 }
+
+/*SOLO QUEDA UN CASI YA QUE EN ESTO:
+
+    if (strcmp(cmd[i], "0") == 0) que eso podemos arrglarlo con un is_digit
+            {
+                printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
+                return (1);
+            }
+    TAMBIEN LE PUEDEN PASAR NUMEROS Y TIENE QUE DAR EL MISMO ERROR
+    
+    BASH-3.2$ export 1
+BASH: export: `1': not a valid identifier
+BASH-3.2$ export 2
+BASH: export: `2': not a valid identifier
+BASH-3.2$ export =
+BASH: export: `=': not a valid identifier
+
+CASOS PARA CONTROLAR
+
+*/

@@ -6,12 +6,12 @@
 #    By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 18:51:28 by agrimald          #+#    #+#              #
-#    Updated: 2024/02/02 17:31:45 by agrimald         ###   ########.fr        #
+#    Updated: 2024/02/06 16:17:29 by agrimald         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CFLAGS = -Wall -Werror -Wextra #-g #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 
 INCS = -I./include/ -I./include/Libft -I$(HOME)/.brew/opt/readline/include
 LIBFTA = -L./include/Libft -lft
@@ -21,7 +21,7 @@ OBJDIR = obj/
 
 SRC_L = main.c utils/destroy.c \
 		commands/echo.c commands/pwd.c commands/cd.c commands/exit.c \
-		commands/env.c commands/export.c commands/unset.c commands/export_utils.c \
+		commands/env.c commands/export_utils.c commands/export.c commands/unset.c  \
 	   	parser/check_errors.c parser/token_analysis.c parser/tokens_operations.c \
 		parser/token_manager.c parser/parser.c parser/procesos.c \
 		expander/expander.c expander/split_to_expand.c expander/utils_exp.c expander/var_expander.c \

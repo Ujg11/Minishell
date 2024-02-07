@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/02 17:06:01 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:52:26 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	else if (!ft_strcmp(exp->exp_matr[0], "export"))
 		return (ft_export(&exp->exp_matr[1], env));
 	else if (!ft_strcmp(exp->exp_matr[0], "unset"))
-		return (ft_unset(*exp->exp_matr, env));
+		return (ft_unset(exp->exp_matr[1], env));
 	else if (!ft_strcmp(exp->exp_matr[0], "env"))
 		return (ft_env(env));
 	else if (!ft_strcmp(exp->exp_matr[0], "exit"))

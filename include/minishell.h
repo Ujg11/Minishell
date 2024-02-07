@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/02 17:05:35 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:06:41 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_env
 {
 	char	*key;
 	char	*value;
-	char	**env_cpy;	
+	char	**env_cpy;
 }	t_env;
 
 typedef struct s_pcs
@@ -95,6 +95,10 @@ void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
 /*****************************************************
  *					  COMMANDS						 *
  *****************************************************/
+	/*--------DEFINES DEL EXPORT-------*/
+
+#define TRUE 1 
+#define FALSE 0
 
 	/*--------PWD--------*/
 int			ft_pwd(void);
@@ -164,6 +168,7 @@ int			check_input(char *str);
 int			special_char(char c);
 int			dst_dots(char *str, char dot);
 int			is_marks(t_tokens *tokens, char *str);
+char		*delete_space(char *str);
 int			is_space(t_tokens *tokens, char *str);
 
 	/*--------TOKENS_OPERATIONS--------*/
@@ -182,9 +187,9 @@ int			parser(t_tokens **tokens, char *str, char **env);
 
 	/*--------PROCESOS--------*/
 
-void	print_pcs_recur(t_pcs *pcs, size_t index);
-void	print(t_pcs *pcs);
-void	print_pcs_types(t_tokens *tokens, int operator_types[]);
+void		print_pcs_recur(t_pcs *pcs, size_t index);
+void		print(t_pcs *pcs);
+void		print_pcs_types(t_tokens *tokens, int operator_types[]);
 
 /*****************************************************
  *					  EXPANDER						 *

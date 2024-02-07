@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_analysis.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:10 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/23 20:14:28 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:28:51 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	is_marks(t_tokens *tokens, char *str)
 		return (len);
 	if (str[0] == '"')
 		add_words(tokens, str + 1, len, 2);
-	else if (str[0] == '\'')
-		add_words(tokens, str + 1, len, 1);
+	//else if (str[0] == '\'')
+	//	add_words(tokens, str + 1, len, 1);
 	else
 		add_words(tokens,str, len, 0);
 	return (len + 2);
@@ -71,4 +71,17 @@ int	is_space(t_tokens *tokens, char *str)
 		i++;
 	add_words(tokens, " ", 1, 4);
 	return (i);
+}
+
+char	*delete_space(char *str)
+{
+	int i;
+
+	i = strlen(str) - 1;
+	while (i >= 0 && str[i] == ' ')
+	{
+		str[i] = '\0';
+		i--;
+	}
+	return (str);
 }

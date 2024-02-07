@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:14:52 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/02 16:44:28 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:19:34 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	is_rd(int c)
 
 int	is_redirection(char *str, int i)
 {
-	if (i < 2)
-		return (0);
+    if (i < 2)
+        return (0);
     if (!str[i + 1])
-		return (1);
+        return (1);
     if (str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>')
-        return 1;
-	if (i >= 2 && is_rd(str[i - 1]) && is_rd(str[i - 2]) && is_rd(str[i]))
-		return (1);
-	if (str[i] == '<' && str[i - 1] == '>')
-		return (1);
-	return (0);
+        return (1);
+    if (i >= 2 && is_rd(str[i - 1]) && is_rd(str[i - 2]) && is_rd(str[i]))
+        return (1);
+    if (str[i] == '<' && str[i - 1] == '>')
+        return (1);
+    return (0);
 }
 
 int	check_rd(char *str, int i)
