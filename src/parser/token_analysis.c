@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:10 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 16:37:04 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:56:26 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*delete_space(char *str)
 {
 	int i;
 
-	i = strlen(str) - 1;
+	i = ft_strlen(str) - 1;
 	while (i >= 0 && str[i] == ' ')
 	{
 		str[i] = '\0';
