@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:39:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 16:44:23 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:35:03 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	executor(t_expander *exp, t_env *env, t_tokens *t, t_executor *exec)
 	init_fd(exec);
 	if (heredoc(exp))
 		exec->err_flag = 1;
+	exec->fd_output = 0;
 	init_exec(node, exec, &pid, env);
 	ft_wait(exec, pid);
 	close_command(exec);

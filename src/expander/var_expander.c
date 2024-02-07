@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:31 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/26 17:32:20 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:16:02 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	exp_expand_var(t_tokens *tokens, t_env	*env, t_executor *exec)
 			|| (tokens->words[i].word[1] == '$'
 				&& tokens->words[i].word[0] == '"'))
 		{
+			printf("Arriba: %s\n", tokens->words[i].word);
 			if (tokens->words[i].word[0] == '"')
 				str = allocate_str_expanded(tokens, i, 2);
 			else

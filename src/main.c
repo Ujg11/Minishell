@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/02 17:33:54 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 10:29:59 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,15 @@ int	main(int argc, char *argv[], char *env[])
 	e->env_cpy = env;
 	exec.env = e;
 	exec.ret_val = 0;
-	//signals();
 	while (1)
 	{
+		signals();
 		input = readline(" > ");
 		if (!input)
 			exit(0);
 		if (input[0] != '\0')
 		{
-			//ft_exit(input);
 			err = parser(&tokens, input, e->env_cpy);
-			//print_tokens(tokens);
 			e->env_cpy = env;
 			exp = expander(tokens, e, &exec);
 			if (exp == NULL)
@@ -46,7 +44,6 @@ int	main(int argc, char *argv[], char *env[])
 				printf("Error aqui\n");
 				continue;
 			}
-			printf("ERROR = %d\n", err);
 			if (err == 0)
 			{
 				/*t_expander *nodo;
@@ -71,7 +68,7 @@ int	main(int argc, char *argv[], char *env[])
 					err = executor(exp, e, tokens, &exec);
 				destroy_all(&tokens, &exp);
 			}
-		}	
+		}
 		else
 			free(input);
 	}

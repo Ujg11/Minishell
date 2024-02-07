@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/02 17:05:35 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:12:49 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_executor
 	int					prev_pipe[2];
 	int					fd_init[2];
 	int					redirection[2];
+	int					fd_output; //nou//
 	int					err_flag;
 	int					ret_val;
 	int					cmd_cont;
@@ -103,7 +104,7 @@ int			ft_pwd(void);
 int			ft_echo(char **args);
 
 	/*---------CD--------*/
-int			ft_cd(char **args);
+int			ft_cd(char **args, int len, t_env *env);
 
 	/*--------EXIT-------*/
 int			ft_exit(char **argv, int len);

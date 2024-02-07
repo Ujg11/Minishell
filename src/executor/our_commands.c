@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   our_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/02 17:06:01 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:43:16 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	if (!ft_strcmp(exp->exp_matr[0], "echo"))
 		return (ft_echo((char **)exp->exp_matr));
 	if (!ft_strcmp(exp->exp_matr[0], "cd"))
-		return (ft_cd(exp->exp_matr));
+		return (ft_cd(exp->exp_matr, exp->len, env));
 	else if (!ft_strcmp(exp->exp_matr[0], "pwd"))
 		return (ft_pwd());
 	else if (!ft_strcmp(exp->exp_matr[0], "export"))

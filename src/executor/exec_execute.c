@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 22:06:08 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:34:54 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static int	command_execute(t_expander *exp, t_env *env)
 
 	i = 0;
 	all_path = ft_getenv(env, "PATH=");
-	printf("Path = %s\n", all_path);
-	if (!all_path)
+	if (access(exp->exp_matr[0], F_OK | X_OK) == 0)
 		return (exec_no_path(exp));
 	paths = ft_split(all_path, ':');
 	while (paths[i])
@@ -80,7 +79,7 @@ void	child_process(t_expander *exp, t_executor *exec, t_env *env, int c)
 {
 	if (exec->err_flag)
 		exit(1);
-	//signals();
+	signals();
 	if (exec->num_pipes != 0 && c > 0)
 	{
 		close(exec->prev_pipe[OUT]);
@@ -91,13 +90,12 @@ void	child_process(t_expander *exp, t_executor *exec, t_env *env, int c)
 	if (exec->num_pipes != 0)
 	{
 		close(exec->pipe_fd[IN]);
-		if (exec->redirection[OUT] == 0)
-		{
-			if (c == exec->num_pipes)
-				dup2(exec->fd_init[OUT], STDOUT_FILENO);
-			else
-				dup2(exec->pipe_fd[OUT], STDOUT_FILENO);
-		}
+		if (exec->cmd_cont == exec->num_pipes && exec->fd_output)
+			dup2(exec->fd_output, STDOUT_FILENO);
+		else if (c == exec->num_pipes)
+			dup2(exec->fd_init[OUT], STDOUT_FILENO);
+		else
+			dup2(exec->pipe_fd[OUT], STDOUT_FILENO);
 		close(exec->pipe_fd[OUT]);
 	}
 	exit(execute(exp, exec, env));

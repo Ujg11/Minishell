@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:52:55 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/27 15:30:20 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:25:15 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	redirect_input(char *filename, t_executor *exec, t_expander *exp)
 
 	if (!filename)
 		return (1);
-	printf("Entra redirect output\n");
 	if (!more_redirections(exp, '<') && exec->redirection[IN] == 0)
 	{
 		fd = open (filename, O_RDONLY);
@@ -88,13 +87,14 @@ int	redirect_output(char *filename, t_expander *exp, t_executor *exec, int fd)
 			perror("Error al abrir archivo de salida :(\n");
 			return (1);
 		}
-		if (dup2(fd, STDOUT_FILENO) < 0)
+		exec->fd_output = fd;//NOU//
+		/*if (dup2(fd, STDOUT_FILENO) < 0)
 		{
 			perror("Error al redirigir :(\n");
 			close(fd);
 			return (1);
 		}
-		close(fd);
+		close(fd);*/
 		exec->redirection[OUT] = 1;
 	}
 	else
@@ -105,7 +105,7 @@ int	redirect_output(char *filename, t_expander *exp, t_executor *exec, int fd)
 
 int	redirect_heredoc(int fd, t_executor *exec)
 {
-	close(fd);
+	(void)fd;
 	exec->redirection[IN] = 1;
 	return (0);
 }

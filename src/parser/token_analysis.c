@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_analysis.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:10 by agrimald          #+#    #+#             */
-/*   Updated: 2023/11/23 20:14:28 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:35:48 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	is_marks(t_tokens *tokens, char *str)
 		return (len);
 	if (str[0] == '"')
 		add_words(tokens, str + 1, len, 2);
-	else if (str[0] == '\'')
-		add_words(tokens, str + 1, len, 1);
 	else
 		add_words(tokens,str, len, 0);
 	return (len + 2);
