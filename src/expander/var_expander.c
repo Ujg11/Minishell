@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:31 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/06 13:16:02 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:04:08 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,3 @@ void	exp_expand_var(t_tokens *tokens, t_env	*env, t_executor *exec)
 		i++;
 	}
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   our_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:36:29 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:57:58 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ static void	pass_tolower(t_expander *exp)
 }
 
 /****  FALTA RELLENAR LAS FUNCIONES CON SUS PARAMETROS  ****/
-
 int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 {
 	exec->redirection[IN] = 0;
 	exec->redirection[OUT] = 0;
 	pass_tolower(exp);
-	//(void)env;
 	if (!ft_strcmp(exp->exp_matr[0], "echo"))
 		return (ft_echo((char **)exp->exp_matr));
 	if (!ft_strcmp(exp->exp_matr[0], "cd"))
@@ -75,4 +73,3 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 		return (ft_exit(exp->exp_matr, exp->len));
 	return (127);
 }
-

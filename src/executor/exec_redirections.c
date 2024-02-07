@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:52:55 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 11:25:15 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:54:00 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,7 @@ int	redirect_output(char *filename, t_expander *exp, t_executor *exec, int fd)
 			perror("Error al abrir archivo de salida :(\n");
 			return (1);
 		}
-		exec->fd_output = fd;//NOU//
-		/*if (dup2(fd, STDOUT_FILENO) < 0)
-		{
-			perror("Error al redirigir :(\n");
-			close(fd);
-			return (1);
-		}
-		close(fd);*/
+		exec->fd_output = fd;
 		exec->redirection[OUT] = 1;
 	}
 	else

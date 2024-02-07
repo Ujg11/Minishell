@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 19:21:33 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/06 16:02:50 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:03:07 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	signal_ctrl_c(int sig)
 	if (sig == SIGINT)
 	{
 		printf("\n");
-		rl_replace_line("", 0); // reemplaza el antiguo texto con uno nuevo
-		rl_on_new_line(); // esto indica que el cursor debe moverse a una nueva linea;
-		rl_redisplay(); // muestra lo escrito por la funcion anterior.
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
 	}
 }
 

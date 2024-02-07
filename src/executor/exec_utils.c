@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:50:30 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/24 17:53:37 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:56:21 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,14 @@ void	ft_wait(t_executor *exec, pid_t pid)
 	int	ret;
 
 	i = 0;
-	//printf("Cont = %d\n", exec->cmd_cont);
 	while (exec->cmd_cont > i)
 	{
-		//printf("Entra 1\n");
 		if (pid == wait(&status))
 		{
-			//printf("Entra 2\n");
 			if (WIFEXITED(status))
 				ret = WEXITSTATUS(status);
 			if (WIFSIGNALED(status))
 			{
-				//printf("Entra 3\n");
 				if (WTERMSIG(status) == SIGINT)
 					ret = 130;
 				else if (WTERMSIG(status) == SIGQUIT)
@@ -85,40 +81,10 @@ void	ft_wait(t_executor *exec, pid_t pid)
 				}
 			}
 		}
-		//printf("Surt 1\n");
 		i++;
 	}
 	exec->ret_val = ret;
 }
-
-/*void	ft_wait(t_executor *exec, pid_t pid_pipe)
-{
-	int		i;
-	int		status;
-	int		real_status;
-	pid_t	pid;
-
-	i = -1;
-	while (++i < exec->num_pipes)
-	{
-		pid = waitpid(-1, &status, 0);
-		if (pid == pid_pipe)
-			real_status = status;
-	}
-	if (WIFEXITED(status))
-		real_status = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == SIGINT)
-			real_status = 130;
-		else if (WTERMSIG(status) == SIGQUIT)
-		{
-			printf("Quit: 3\n");
-			real_status = 131;
-		}
-	}
-	exec->ret_val = real_status;
-}*/
 
 void	close_fds(t_expander *exp, t_executor *exec)
 {
