@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 16:06:41 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:34:07 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_pcs
 {
 	t_tokens	*argv;
 	int			*types;
-}t_pcs;
+}	t_pcs;
 
 typedef struct s_expander
 {
@@ -76,6 +76,7 @@ typedef struct s_executor
 	int					prev_pipe[2];
 	int					fd_init[2];
 	int					redirection[2];
+	int					fd_output; //nou//
 	int					err_flag;
 	int					ret_val;
 	int					cmd_cont;
@@ -89,7 +90,8 @@ typedef struct s_executor
 
 //destroy.c
 void		destroy_expander(t_expander **exp);
-void		destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/);
+//void		destroy_all(t_tokens **t, t_expander **exp);
+void		destroy_all(t_tokens **t, t_expander **exp, char *input);
 
 
 /*****************************************************
@@ -107,7 +109,7 @@ int			ft_pwd(void);
 int			ft_echo(char **args);
 
 	/*---------CD--------*/
-int			ft_cd(char **args);
+int			ft_cd(char **args, int len, t_env *env);
 
 	/*--------EXIT-------*/
 int			ft_exit(char **argv, int len);

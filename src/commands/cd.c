@@ -6,16 +6,12 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:51:53 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 13:06:42 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:06:34 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//usar chdir para movernos entre directorios
-//idea: podemos distinguir entre el caso de que sea para delante o para atras. Si es para delante
-//podemos poner en el path lo que el usuario escriba para ir a los siguientes directorios. Si es 
-//para atras podemos obtener el path con getcwd y quitarle info
 static char	*remove_end(char *str)
 {
 	int		i;
@@ -58,7 +54,6 @@ static char	*cd_back(void)
 		exit(EXIT_FAILURE);
 	}
 	pwd_f = remove_end(pwd_i);
-	printf("PWD salida = %s\n", pwd_f);
 	free (pwd_i);
 	return (pwd_f);
 }
@@ -93,7 +88,31 @@ static char	*cd_forward(char *pwd_i, char *str)
 	return (pwd_f);
 }
 
-int	ft_cd(char **args)
+int	home(t_env *env, char *str, int len)
+{
+	char	*pwd;
+	int		i;
+
+	i = 0;
+	if (len >= 3)
+	{
+		printf("cd : demasiados argumentos\n");
+		return (1);
+	}
+	while (env->env_cpy[i])
+	{
+		if (strncmp(env->env_cpy[i], str, 4) == 0)
+		{
+			pwd = &env->env_cpy[i][5];
+			chdir(pwd);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	ft_cd(char **args, int len, t_env *env)
 {
 	int		flag;
 	char	*pwd_i;
@@ -101,6 +120,8 @@ int	ft_cd(char **args)
 	int		i;
 
 	i = 0;
+	if (len == 1 || len >= 3)
+		return (home(env, "HOME", len));
 	if (ft_strncmp(args[i], "cd", ft_strlen(*args)) != 0)
 		return (EXIT_FAILURE);
 	i++;

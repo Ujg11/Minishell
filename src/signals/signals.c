@@ -6,13 +6,13 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 19:21:33 by agrimald          #+#    #+#             */
-/*   Updated: 2024/01/29 18:11:42 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:02:50 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*void	signal_ctrl_c(int sig)
+void	signal_ctrl_c(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -25,7 +25,7 @@
 
 void	signals(void)
 {
-	//rl_catch_signals = 0;
+	rl_catch_signals = 0;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_ctrl_c);
-}*/
+}

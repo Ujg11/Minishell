@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:39:58 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/01/29 12:25:35 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:14:01 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,10 @@ void	destroy_tokens(t_tokens **t)
 	*t = NULL;
 }
 
-/*void	destroy_executor(t_executor **exec)
-{
-	if (!exec || !(*exec))
-		return ;
-	free(*exec);
-}*/
-
-void	destroy_all(t_tokens **t, t_expander **exp/*, t_executor **exec*/)
+void	destroy_all(t_tokens **t, t_expander **exp, char *input)
 {
 	destroy_tokens(t);
 	destroy_expander(exp);
-	//destroy_executor(exec);
+	if (input)
+		free(input);
 }
