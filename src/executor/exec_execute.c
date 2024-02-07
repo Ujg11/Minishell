@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:36:06 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:43:31 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	command_execute(t_expander *exp, t_env *env)
 
 	i = 0;
 	all_path = ft_getenv(env, "PATH=");
-	if (!all_path)
+	if (access(exp->exp_matr[0], F_OK | X_OK) == 0)
 		return (exec_no_path(exp));
 	paths = ft_split(all_path, ':');
 	while (paths[i])

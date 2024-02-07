@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 16:34:07 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:49:37 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_env
 {
 	char	*key;
 	char	*value;
-	char	**env_cpy;
+	char	**env_cpy;	
 }	t_env;
 
 typedef struct s_pcs
@@ -76,7 +76,7 @@ typedef struct s_executor
 	int					prev_pipe[2];
 	int					fd_init[2];
 	int					redirection[2];
-	int					fd_output; //nou//
+	int					fd_output;
 	int					err_flag;
 	int					ret_val;
 	int					cmd_cont;
@@ -97,10 +97,6 @@ void		destroy_all(t_tokens **t, t_expander **exp, char *input);
 /*****************************************************
  *					  COMMANDS						 *
  *****************************************************/
-	/*--------DEFINES DEL EXPORT-------*/
-
-#define TRUE 1 
-#define FALSE 0
 
 	/*--------PWD--------*/
 int			ft_pwd(void);
@@ -120,6 +116,8 @@ void		replace_value(char *cmd, t_env *env);
 int			var_exist(char *cmd, t_env *env);
 
 	/*--------EXPORT-----*/
+	#define TRUE 1
+	#define FALSE 0
 void		bubble_sort(char **arr, int size, int i);
 void		print_special_export(t_env *env, int count, int i);
 void		special_export(t_env *env);
@@ -170,8 +168,8 @@ int			check_input(char *str);
 int			special_char(char c);
 int			dst_dots(char *str, char dot);
 int			is_marks(t_tokens *tokens, char *str);
-char		*delete_space(char *str);
 int			is_space(t_tokens *tokens, char *str);
+char		*delete_space(char *str);
 
 	/*--------TOKENS_OPERATIONS--------*/
 
@@ -189,9 +187,9 @@ int			parser(t_tokens **tokens, char *str, char **env);
 
 	/*--------PROCESOS--------*/
 
-void		print_pcs_recur(t_pcs *pcs, size_t index);
-void		print(t_pcs *pcs);
-void		print_pcs_types(t_tokens *tokens, int operator_types[]);
+void	print_pcs_recur(t_pcs *pcs, size_t index);
+void	print(t_pcs *pcs);
+void	print_pcs_types(t_tokens *tokens, int operator_types[]);
 
 /*****************************************************
  *					  EXPANDER						 *
