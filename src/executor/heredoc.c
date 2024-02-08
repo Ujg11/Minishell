@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:08:43 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:11:22 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:36:45 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	init_heredoc(t_expander *exp, char *str)
 {
 	int		fd[2];
 
-	signals();
+	//signals();
 	if (pipe(fd) < 0)
 	{
 		perror("pipe");
@@ -63,6 +63,7 @@ int	heredoc(t_expander *exp)
 	t_expander	*node;
 
 	node = exp;
+	signals();
 	while (node != NULL)
 	{
 		if (node->exp_type == HEREDOC || node->exp_type == HEREDOC_PIPE)

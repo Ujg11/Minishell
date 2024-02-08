@@ -6,7 +6,11 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/08 19:23:08 by agrimald         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/08 19:32:07 by ojimenez         ###   ########.fr       */
+>>>>>>> 04e3ba8b35d55e525441e11dff6ea45b56d7a063
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +31,12 @@ int	is_space_main(char *str)
 	return (0);
 }
 
-int	main(int argc, char *argv[], char *env[])
+void	init_minishell(t_tokens	*t, t_executor *exec, t_env *e)
 {
-	char		*input;
-	t_tokens	*tokens;
-	t_expander	*exp;
-	t_executor	exec;
-	t_env		*e;
 	int			err;
+	char		*input;
+	t_expander	*exp;
 
-	(void)argc;
-	(void)argv;
-	//(void)env;//NO
-	input = NULL;
-	tokens = NULL;
-	e = malloc(sizeof(t_env));
-	e->env_cpy = env;
-	exec.env = e;
-	exec.ret_val = 0;
-	signals();
 	while (1)
 	{
 		input = readline("minishell-> ");
@@ -53,24 +44,36 @@ int	main(int argc, char *argv[], char *env[])
 			exit(1);
 		if (input[0] != '\0' && is_space_main(input))
 		{
-			err = parser(&tokens, input, e->env_cpy);
-			exp = expander(tokens, e, &exec);
-			if (exp == NULL)
-			{
-				printf("Error aqui\n");
-				continue ;
-			}
+			err = parser(&t, input, e->env_cpy);
+			exp = expander(t, e, exec);
 			if (err == 0)
 			{
 				if (exp->exp_matr[0])
-					err = executor(exp, e, tokens, &exec);
-				destroy_all(&tokens, &exp);
+					err = executor(exp, e, t, exec);
+				destroy_all(&t, &exp);
 			}
 			free(input);
 		}
 		else
 			free(input);
 	}
+}
+
+int	main(int argc, char *argv[], char *env[])
+{
+	t_tokens	*tokens;
+	t_executor	exec;
+	t_env		*e;
+
+	(void)argc;
+	(void)argv;
+	tokens = NULL;
+	e = malloc(sizeof(t_env));
+	e->env_cpy = env;
+	exec.env = e;
+	exec.ret_val = 0;
+	signals();
+	init_minishell(tokens, &exec, e);
 }
 
 /*t_expander *nodo;

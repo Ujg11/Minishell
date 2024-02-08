@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:43:15 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 19:20:44 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:24:08 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ int	matrixify(t_tokens *tokens)
 		tokens->env[i] = ft_strdup(word[i].word);
 		if (!tokens->env[i])
 			return (0);
-		/*memcpy(tokens->env[i]->env_cpy, word[i].word, word[i].len);
-		tokens->env[i]->env_cpy[word[i].len] = '\0';*/
 		i++;
 	}
 	return (1);

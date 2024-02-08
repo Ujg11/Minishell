@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:19:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 18:39:41 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:30:12 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	hola(char **env, t_env *env_hola)
 
 	while (env[i] != NULL)
 		i++;
-	env_hola->env_cpy = calloc(sizeof(char *), i + 1);
+	env_hola->env_cpy = ft_calloc(sizeof(char *), i + 1);
 	if (!env_hola->env_cpy)
 		exit(1);
 	while (j < i)
 	{
-		env_hola->env_cpy[j] = strdup(env[j]);
+		env_hola->env_cpy[j] = ft_strdup(env[j]);
 		j++;
 	}
 	env_hola->env_cpy[j] = NULL;

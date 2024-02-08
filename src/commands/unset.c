@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:41 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/01 18:52:42 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:38:50 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int    ft_unset(char *variable, t_env *env)
 
     while (env_ptr[i] != NULL)
     {
-        if (strncmp(env_ptr[i], variable, strlen(variable)) == 0)
+        if (ft_strncmp(env_ptr[i], variable, ft_strlen(variable)) == 0)
         {
+            free(env_ptr[i]);
             while (env_ptr[i] != NULL)
             {
                 env_ptr[i] = env_ptr[i + 1];

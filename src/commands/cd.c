@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:51:53 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/06 13:06:34 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:40:06 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int	ft_cd(char **args, int len, t_env *env)
 		pwd_f = cd_forward(pwd_i, args[i]);
 	flag = chdir(pwd_f);
 	free(pwd_f);
+	free(pwd_i);
 	if (flag == -1)
 	{
 		printf("%s: Ueep, directorio no encontrado 😅\n", args[i]);

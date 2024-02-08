@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:19 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 18:39:48 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:30:43 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void    special_export(t_env *env)
 
     while (env->env_cpy[i] != NULL)
     {
-        char    *equal_sign = strchr(env->env_cpy[i], '=');
+        char    *equal_sign = ft_strchr(env->env_cpy[i], '=');
         if (equal_sign != NULL)
         {
             *equal_sign = '\0';
@@ -62,15 +62,15 @@ void    normal_export(char *cmd, t_env *env)
     patata = env->env_cpy;
     while (patata[i] != NULL)
         i++;
-    env->env_cpy = calloc(sizeof(char *), i + 2);
+    env->env_cpy = ft_calloc(sizeof(char *), i + 2);
     int j = 0;
     while (j < i)
     {
-        env->env_cpy[j] = strdup(patata[j]);
+        env->env_cpy[j] = ft_strdup(patata[j]);
         //free(patata[j]);
         j++;
     }
-    env->env_cpy[j++] = strdup(cmd);
+    env->env_cpy[j++] = ft_strdup(cmd);
     env->env_cpy[j] = NULL;
     //free(patata);
 }
