@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 20:28:47 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 17:23:14 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:36:29 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*ft_strdup(const char *s)
 		i++;
 	}
 	dup[i] = '\0';
+	free(s);
 	return (dup);
 }
 /*int	main(int ac, char **av)
