@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 19:21:01 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:29:38 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdbool.h>
+# define TRUE 1
+# define FALSE 0
 
 struct	s_expander;
 
@@ -87,12 +89,10 @@ typedef struct s_executor
 /*****************************************************
  *						UTILS						 *
  *****************************************************/
-
 //destroy.c
 void		destroy_expander(t_expander **exp);
 //void		destroy_all(t_tokens **t, t_expander **exp);
 void		destroy_all(t_tokens **t, t_expander **exp);
-
 
 /*****************************************************
  *					  COMMANDS						 *
@@ -112,13 +112,11 @@ int			ft_exit(char **argv, int len);
 
 	/*--------EXPORT UTILS-----*/
 int			mod_strcmp(char *cmd, char *env);
-int    		check_env_without_value(char *cmd);
+int			check_env_without_value(char *cmd);
 void		replace_value(char *cmd, t_env *env);
 int			var_exist(char *cmd, t_env *env);
 
 	/*--------EXPORT-----*/
-	#define TRUE 1
-	#define FALSE 0
 void		bubble_sort(char **arr, int size, int i);
 void		print_special_export(t_env *env, int count, int i);
 void		special_export(t_env *env);
@@ -188,9 +186,9 @@ int			parser(t_tokens **tokens, char *str, char **env);
 
 	/*--------PROCESOS--------*/
 
-void	print_pcs_recur(t_pcs *pcs, size_t index);
-void	print(t_pcs *pcs);
-void	print_pcs_types(t_tokens *tokens, int operator_types[]);
+void		print_pcs_recur(t_pcs *pcs, size_t index);
+void		print(t_pcs *pcs);
+void		print_pcs_types(t_tokens *tokens, int operator_types[]);
 
 /*****************************************************
  *					  EXPANDER						 *

@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:19:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 19:30:12 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:58:25 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	ft_env(t_env *count)
 {
-	int i = -1;
+	int	i;
 
+	i = -1;
 	while (count->env_cpy[++i] != NULL)
 	{
 		if (check_env_without_value(count->env_cpy[i]) == 0)
-			continue;
+			continue ;
 		printf("%s\n", count->env_cpy[i]);
 	}
 	return (0);
@@ -27,9 +28,11 @@ int	ft_env(t_env *count)
 
 void	hola(char **env, t_env *env_hola)
 {
-	int i = 0;
-	int j = 0;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
 	while (env[i] != NULL)
 		i++;
 	env_hola->env_cpy = ft_calloc(sizeof(char *), i + 1);

@@ -6,30 +6,32 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:41 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 19:38:50 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:20:06 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int    ft_unset(char *variable, t_env *env)
+int	ft_unset(char *variable, t_env *env)
 {
-    int i = 0;
-    char **env_ptr = env->env_cpy;
+	char	**env_ptr;
+	int		i;
 
-    while (env_ptr[i] != NULL)
-    {
-        if (ft_strncmp(env_ptr[i], variable, ft_strlen(variable)) == 0)
-        {
-            free(env_ptr[i]);
-            while (env_ptr[i] != NULL)
-            {
-                env_ptr[i] = env_ptr[i + 1];
-                i++;
-            }
-            return (1);
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	env_ptr = env->env_cpy;
+	while (env_ptr[i] != NULL)
+	{
+		if (ft_strncmp(env_ptr[i], variable, ft_strlen(variable)) == 0)
+		{
+			free(env_ptr[i]);
+			while (env_ptr[i] != NULL)
+			{
+				env_ptr[i] = env_ptr[i + 1];
+				i++;
+			}
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
