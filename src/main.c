@@ -6,12 +6,11 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 19:32:07 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:19:25 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	is_space_main(char *str)
 {
@@ -33,6 +32,7 @@ void	init_minishell(t_tokens	*t, t_executor *exec, t_env *e)
 	char		*input;
 	t_expander	*exp;
 
+	signals();
 	while (1)
 	{
 		input = readline("minishell-> ");
@@ -68,25 +68,5 @@ int	main(int argc, char *argv[], char *env[])
 	e->env_cpy = env;
 	exec.env = e;
 	exec.ret_val = 0;
-	signals();
 	init_minishell(tokens, &exec, e);
 }
-
-/*t_expander *nodo;
-				nodo = exp;
-				int i = 1;
-				int j = 0;
-					
-				while (nodo)
-				{
-					printf("Nodo %d:\nTipo:%d\nLen = %d\n", i, nodo->exp_type, nodo->len);
-					while (j < nodo->len + 1)
-					{
-						printf("%s\n", nodo->exp_matr[j]);
-						j++;
-					}
-					printf("Token = %s\n", nodo->token);
-					j = 0;
-					i++;
-					nodo = nodo->next;
-				}*/
