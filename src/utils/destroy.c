@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:39:58 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/08 15:41:46 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:16:09 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ void	destroy_expander(t_expander **exp)
 	*exp = NULL;
 }
 
+void	free_env(char ***env)
+{
+	char	**current;
+
+	if (*env)
+	{
+		current = *env;
+		while (*current)
+		{
+			free(*current);
+			current++;
+		}
+		free(*env);
+		*env = NULL;
+	}
+}
+
 void	destroy_tokens(t_tokens **t)
 {
 	int	i;
@@ -57,6 +74,7 @@ void	destroy_tokens(t_tokens **t)
 	i = 0;
 	if (!t || !*t)
 		return ;
+	free_env(&(*t)->env);
 	if ((*t)->words)
 	{
 		while (i < (int)(*t)->size)
@@ -73,9 +91,6 @@ void	destroy_tokens(t_tokens **t)
 
 void	destroy_all(t_tokens **t, t_expander **exp)
 {
-	//(void)t;
 	destroy_tokens(t);
 	destroy_expander(exp);
-	//if (input)
-		//free(input);
 }
