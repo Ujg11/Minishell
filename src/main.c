@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 17:28:14 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:33:16 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	main(int argc, char *argv[], char *env[])
 
 	(void)argc;
 	(void)argv;
+	//(void)env;//NO
 	input = NULL;
 	tokens = NULL;
-	printf("entra\n");
 	e = malloc(sizeof(t_env));
 	e->env_cpy = env;
 	exec.env = e;
@@ -50,27 +50,23 @@ int	main(int argc, char *argv[], char *env[])
 	{
 		input = readline("minishell-> ");
 		if (!input)
-			exit(0);
+			exit(1);
 		if (input[0] != '\0' && is_space_main(input))
 		{
 			err = parser(&tokens, input, e->env_cpy);
-			//print_tokens(tokens);
-			//e->env_cpy = env; ESTO NOOOO VAAAAA
 			exp = expander(tokens, e, &exec);
 			if (exp == NULL)
 			{
 				printf("Error aqui\n");
 				continue ;
 			}
-			//printf("ERROR = %d\n", err);
 			if (err == 0)
 			{
-				//Aqui el nodo
-
 				if (exp->exp_matr[0])
 					err = executor(exp, e, tokens, &exec);
-				destroy_all(&tokens, &exp, input);
+				destroy_all(&tokens, &exp);
 			}
+			free(input);
 		}
 		else
 			free(input);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 18:36:41 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:01:48 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_tokens
 	t_word	*words;
 	size_t	size;
 	char	*str;
-	char 	**env;
+	char	**env;
 	int		error;
 	int		i_exp;
 }	t_tokens;
@@ -91,7 +91,7 @@ typedef struct s_executor
 //destroy.c
 void		destroy_expander(t_expander **exp);
 //void		destroy_all(t_tokens **t, t_expander **exp);
-void		destroy_all(t_tokens **t, t_expander **exp, char *input);
+void		destroy_all(t_tokens **t, t_expander **exp);
 
 
 /*****************************************************
@@ -246,7 +246,7 @@ char		*get_filename(t_expander *exp);
 int			ft_strcmp(char *s1, char *s2);
 int			get_heredoc_fd(t_expander *exp);
 void		close_fds(t_expander *exp, t_executor *exec);
-void		ft_wait(t_executor *exec, pid_t pid);
+void		ft_wait(t_executor *exec, pid_t pid, int ret);
 
 //exec_redirections.c
 int			redirect_input(char *filename, t_executor *exec, t_expander *exp);

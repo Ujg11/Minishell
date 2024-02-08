@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 17:02:06 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:33:31 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ int	is_normal_ch(char ch)
 
 int string_tokens(t_tokens *tokens, char *str)
 {
-    int i;
-    int command_found;
+	int	i;
+	int	command_found;
 
-    i = 0;
-    command_found = 0;
-    while (str[i] && !is_normal_ch(str[i]))
-        i++;
-    if (!command_found)
-    {
-        if (i >= 2 && str[0] == '$' && str[1] == '?' && is_normal_ch(str[i]))
-            add_words(tokens, str, i, 0);
-        else
-            add_words(tokens, str, i, 0);
-    }
-    return i;
+	i = 0;
+	command_found = 0;
+	while (str[i] && !is_normal_ch(str[i]))
+		i++;
+	if (!command_found)
+	{
+		if (i >= 2 && str[0] == '$' && str[1] == '?' && is_normal_ch(str[i]))
+			add_words(tokens, str, i, 0);
+		else
+			add_words(tokens, str, i, 0);
+	}
+	return (i);
 }
 
 int	parse_string(t_tokens *tokens, char *str)

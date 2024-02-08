@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:39:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:36:20 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:01:04 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	executor(t_expander *exp, t_env *env, t_tokens *t, t_executor *exec)
 		exec->err_flag = 1;
 	exec->fd_output = 0;
 	init_exec(node, exec, &pid, env);
-	ft_wait(exec, pid);
+	ft_wait(exec, pid, exec->ret_val);
 	close_command(exec);
 	return (exec->ret_val);
 }

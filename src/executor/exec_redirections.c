@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:52:55 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:54:00 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:06:53 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	redirect_input(char *filename, t_executor *exec, t_expander *exp)
 		}
 		close(fd);
 		exec->redirection[IN] = 1;
-		printf("Fa la redireccio\n");
 	}
 	return (0);
 }
