@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 19:47:51 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:02:06 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ int	is_normal_ch(char ch)
 	return (0);
 }
 
-/*int	string_tokens(t_tokens *tokens, char *str)
-{
-	int	i;
-	int	command_found;
-
-	i = 0;
-	command_found = 0;
-	while (str[i] && !is_normal_ch(str[i]))
-		i++;
-	if (!command_found)
-		add_words(tokens, str, i, 0);
-	return (i);
-}*/
 int string_tokens(t_tokens *tokens, char *str)
 {
     int i;

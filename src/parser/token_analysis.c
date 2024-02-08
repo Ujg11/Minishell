@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:10 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 16:56:26 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:02:24 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	is_marks(t_tokens *tokens, char *str)
 		return (len);
 	if (str[0] == '"')
 		add_words(tokens, str + 1, len, 2);
-	//else if (str[0] == '\'')
-	//	add_words(tokens, str + 1, len, 1);
 	else
 		add_words(tokens,str, len, 0);
 	return (len + 2);

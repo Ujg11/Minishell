@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:43:15 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 19:48:36 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:19:19 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_word	*create_word(char *str, size_t len, int type)
 	}
 	word->len = len;
 	word->type = type;
-	//word->next = NULL;
-	//word->word[len] = '\0';	
 	while (len-- > 0)
 		word->word[len] = str[len];
 	return (word);
