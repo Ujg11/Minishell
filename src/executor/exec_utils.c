@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:50:30 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:56:21 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:01:56 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ int	get_heredoc_fd(t_expander *exp)
 	return (heredoc_fd);
 }
 
-void	ft_wait(t_executor *exec, pid_t pid)
+void	ft_wait(t_executor *exec, pid_t pid, int ret)
 {
 	int	status;
 	int	i;
-	int	ret;
 
 	i = 0;
 	while (exec->cmd_cont > i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:59:59 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 16:43:31 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:28:17 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	child_process(t_expander *exp, t_executor *exec, t_env *env, int c)
 			dup2(exec->prev_pipe[IN], STDIN_FILENO);
 		close(exec->prev_pipe[IN]);
 	}
+	if (exec->num_pipes == 0 && exec->fd_output)
+		dup2(exec->fd_output, STDOUT_FILENO);
 	if (exec->num_pipes != 0)
 	{
 		close(exec->pipe_fd[IN]);

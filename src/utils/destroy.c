@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:39:58 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 17:33:23 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:41:46 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,17 @@ void	destroy_tokens(t_tokens **t)
 			i++;
 		}
 		free((*t)->words);
-		free(*t);
 		(*t)->words = NULL;
+		free(*t);
 	}
 	*t = NULL;
 }
 
-void	destroy_all(t_tokens **t, t_expander **exp, char *input)
+void	destroy_all(t_tokens **t, t_expander **exp)
 {
+	//(void)t;
 	destroy_tokens(t);
 	destroy_expander(exp);
-	if (input)
-		free(input);
+	//if (input)
+		//free(input);
 }

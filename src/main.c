@@ -6,11 +6,26 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 17:55:51 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:38:18 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
+int	is_space_main(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	main(int argc, char *argv[], char *env[])
 {
@@ -23,6 +38,7 @@ int	main(int argc, char *argv[], char *env[])
 
 	(void)argc;
 	(void)argv;
+	//(void)env;//NO
 	input = NULL;
 	tokens = NULL;
 	e = malloc(sizeof(t_env));
@@ -34,12 +50,10 @@ int	main(int argc, char *argv[], char *env[])
 	{
 		input = readline("minishell-> ");
 		if (!input)
-			exit(0);
-		if (input[0] != '\0')
+			exit(1);
+		if (input[0] != '\0' && is_space_main(input))
 		{
 			err = parser(&tokens, input, e->env_cpy);
-			//print_tokens(tokens);
-			//e->env_cpy = env; ESTO NOOOO VAAAAA
 			exp = expander(tokens, e, &exec);
 			if (exp == NULL)
 			{
@@ -50,9 +64,9 @@ int	main(int argc, char *argv[], char *env[])
 			{
 				if (exp->exp_matr[0])
 					err = executor(exp, e, tokens, &exec);
-				printf("LLEGA\n");
-				destroy_all(&tokens, &exp, input);
+				destroy_all(&tokens, &exp);
 			}
+			free(input);
 		}
 		else
 			free(input);
