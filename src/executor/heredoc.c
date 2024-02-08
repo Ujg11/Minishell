@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:08:43 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/08 19:36:45 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:49:12 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	bucle_heredoc(int fd, char *str)
 {
 	char	*line;
 
+	signals();
 	while (42)
 	{
 		line = readline("heredoc > ");
@@ -43,7 +44,6 @@ static int	init_heredoc(t_expander *exp, char *str)
 {
 	int		fd[2];
 
-	//signals();
 	if (pipe(fd) < 0)
 	{
 		perror("pipe");
@@ -63,7 +63,6 @@ int	heredoc(t_expander *exp)
 	t_expander	*node;
 
 	node = exp;
-	signals();
 	while (node != NULL)
 	{
 		if (node->exp_type == HEREDOC || node->exp_type == HEREDOC_PIPE)
