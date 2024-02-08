@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:43:15 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 19:24:08 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:38:39 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	add_words(t_tokens *tokens, char *str, size_t len, int type)
 	}
 	if (tokens->size > 1)
 	{
-		ft_memcpy(new_array, tokens->words, (tokens->size - 1) * sizeof(t_word));
+		ft_memcpy(new_array, tokens->words, \
+				(tokens->size - 1) * sizeof(t_word));
 		free(tokens->words);
 	}
 	new_array[tokens->size - 1] = *new_word;

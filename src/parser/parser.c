@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:59 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 18:53:51 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:25:37 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	is_normal_ch(char ch)
 	return (0);
 }
 
-int string_tokens(t_tokens *tokens, char *str)
+int	string_tokens(t_tokens *tokens, char *str)
 {
 	int	i;
 	int	command_found;
