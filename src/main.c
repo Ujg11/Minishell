@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/07 16:37:19 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:55:51 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ int	main(int argc, char *argv[], char *env[])
 				printf("Error aqui\n");
 				continue ;
 			}
-			//printf("ERROR = %d\n", err);
 			if (err == 0)
 			{
-				//Aqui el nodo
-
 				if (exp->exp_matr[0])
 					err = executor(exp, e, tokens, &exec);
+				printf("LLEGA\n");
 				destroy_all(&tokens, &exp, input);
 			}
 		}

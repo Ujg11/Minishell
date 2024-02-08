@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:39:58 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/07 15:14:01 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:33:23 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	destroy_tokens(t_tokens **t)
 			i++;
 		}
 		free((*t)->words);
+		free(*t);
 		(*t)->words = NULL;
 	}
-	free(*t);
 	*t = NULL;
 }
 
