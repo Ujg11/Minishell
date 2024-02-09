@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:46:28 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/09 13:56:40 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:04:33 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_minishell(t_tokens	*t, t_executor *exec, t_env *e)
 		if (input[0] != '\0' && is_space_main(input))
 		{
 			err = parser(&t, input, e->env_cpy);
-			print_tokens(t);
+			//print_tokens(t);
 			exp = expander(t, e, exec);
 			if (err == 0)
 			{
