@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/08 16:39:23 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:19:28 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	exec->redirection[IN] = 0;
 	exec->redirection[OUT] = 0;
 	pass_tolower(exp);
+	if (exec->num_pipes == 0 && exec->fd_output)
+		dup2(exec->fd_output, STDOUT_FILENO);
 	if (!ft_strcmp(exp->exp_matr[0], "echo"))
 		return (ft_echo((char **)exp->exp_matr));
 	if (!ft_strcmp(exp->exp_matr[0], "cd"))
