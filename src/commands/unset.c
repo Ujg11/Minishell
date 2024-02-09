@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:41 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 21:20:06 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:40:12 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,15 @@ int	ft_unset(char *variable, t_env *env)
 	}
 	return (0);
 }
+
+
+/*corregir este error 
+minishell-> export PATH=/usr/local/bin:/bin:/usr/bin
+minishell(4787,0x10e822dc0) malloc: *** error for object 0x7ffee6e69773: pointer being freed was not allocated
+minishell(4787,0x10e822dc0) malloc: *** set a breakpoint in malloc_error_break to debug
+[1]    4787 abort      ./minishell
+
+y que tambien el unset de un mensaje de error al enviarle
+
+unset $PATH
+*/
