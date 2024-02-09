@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/09 14:36:50 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:35:20 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ void		free_tokens(t_tokens *tokens);
 int			is_rd(int c);
 int			is_redirection(char *str, int i);
 int			check_rd(char *str, int i);
-int			check_redirection_errors(char *str, int i);
 int			check_input(char *str);
 
 	/*--------TOKEN_ANALYSIS--------*/

@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:14:52 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/09 16:23:33 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:43:58 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,27 @@ int	check_rd(char *str, int i)
 	return (0);
 }
 
-/*int	check_redirection_errors(char *str, int i)
+void	check_redirection_errors(char *str, int i, int *error)
 {
-	if (str[i] == '>' && is_redirection(str, i))
-		return (printf("syntax error near unexpected token `>'\n"));
-	else if (str[i + 1] == '>' && str[i + 2] == '>')
-		return (printf("syntax error near unexpected token '>>'\n"));
-	else if (str[i] == '|' && check_rd(str, i))
-		return (printf("syntax error near unexpected token `|'\n"));
-	else if (str[i] == '<' && is_redirection(str, i))
-		return (printf("syntax error near unexpected token `<'\n"));
-	else if (str[i + 1] == '<' && str[i + 2] == '<')
-		return (printf("syntax error near unexpected token '<<'\n"));
-	return (0);
+	if (str[i] == '>')
+	{
+		if (is_redirection(str, i))
+			*error = printf("syntax error near unexpected token `>'\n");
+		else if (str[i + 1] == '>' && str[i + 2] == '>')
+			*error = printf("syntax error near unexpected token '>>'\n");
+	}
+	else if (str[i] == '|')
+	{
+		if (check_rd(str, i))
+			*error = printf("syntax error near unexpected token `|'\n");
+	}
+	else if (str[i] == '<')
+	{
+		if (is_redirection(str, i))
+			*error = printf("syntax error near unexpected token `<'\n");
+		else if (str[i + 1] == '<' && str[i + 2] == '<')
+			*error = printf("syntax error near unexpected token '<<'\n");
+	}
 }
 
 int	check_input(char *str)
@@ -69,14 +77,14 @@ int	check_input(char *str)
 	error = 0;
 	while (str[i])
 	{
-		error = check_redirection_errors(str, i);
+		check_redirection_errors(str, i, &error);
 		if (error != 0)
 			return (1);
 		i++;
 	}
 	return (0);
-}*/
-int	check_input(char *str)
+}
+/*int	check_input(char *str)
 {
 	int	i;
 	int	error;
@@ -109,7 +117,7 @@ int	check_input(char *str)
 		i++;
 	}
 	return (0);
-}
+}*/
 
 /*int main() 
 {
