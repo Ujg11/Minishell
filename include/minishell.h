@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/09 12:29:05 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:36:50 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,14 @@ int			mod_strcmp(char *cmd, char *env);
 int			check_env_without_value(char *cmd);
 void		replace_value(char *cmd, t_env *env);
 int			var_exist(char *cmd, t_env *env);
+void		bubble_sort(char **arr, int size, int i);
 
 	/*--------EXPORT-----*/
-void		bubble_sort(char **arr, int size, int i);
 void		print_special_export(t_env *env, int count, int i);
 void		special_export(t_env *env);
 void		normal_export(char *cmd, t_env *env);
 int			ft_export(char **cmd, t_env *env);
+int			handle_export_commands(char **cmd, t_env *env);
 
 	/*--------UNSET------*/
 int			ft_unset(char *variable, t_env *env);

@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:29 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 21:16:21 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:44:43 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	replace_value(char *cmd, t_env *env)
 		if (mod_strcmp(cmd, env->env_cpy[i]) == TRUE)
 		{
 			free(env->env_cpy[i]);
-			env->env_cpy[i] = strdup(cmd);
+			env->env_cpy[i] = ft_strdup(cmd);
 			return ;
 		}
 		i++;
@@ -74,4 +74,19 @@ int	var_exist(char *cmd, t_env *env)
 		i++;
 	}
 	return (FALSE);
+}
+
+void	bubble_sort(char **arr, int size, int i)
+{
+	char	*temp;
+
+	if (i == size - 1)
+		return ;
+	if (ft_strcmp(arr[i], arr[i + 1]) > 0)
+	{
+		temp = arr[i];
+		arr[i] = arr[i + 1];
+		arr[i + 1] = temp;
+	}
+	bubble_sort(arr, size, i + 1);
 }

@@ -6,26 +6,11 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:19 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 21:24:57 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:47:41 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	bubble_sort(char **arr, int size, int i)
-{
-	char	*temp;
-
-	if (i == size - 1)
-		return ;
-	if (ft_strcmp(arr[i], arr[i + 1]) > 0)
-	{
-		temp = arr[i];
-		arr[i] = arr[i + 1];
-		arr[i + 1] = temp;
-	}
-	bubble_sort(arr, size, i + 1);
-}
 
 void	print_special_export(t_env *env, int count, int i)
 {
@@ -80,52 +65,35 @@ void	normal_export(char *cmd, t_env *env)
 
 int	ft_export(char **cmd, t_env *env)
 {
-	int	i;
-
-	i = 0;
 	if (cmd[0] == NULL)
 	{
 		special_export(env);
 		return (0);
 	}
 	else
+		return (handle_export_commands(cmd, env));
+}
+
+int	handle_export_commands(char **cmd, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i] != NULL)
 	{
-		while (cmd[i] != NULL)
+		if (ft_strcmp(cmd[i], "0") == 0)
 		{
-			if (strcmp(cmd[i], "0") == 0)
-			{
-				printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
-				return (1);
-			}
-			else
-			{
-				if (var_exist(cmd[i], env) == TRUE)
-					replace_value(cmd[i], env);
-				else
-					normal_export(cmd[i], env);
-			}
-			i++;
+			printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
+			return (1);
 		}
+		else
+		{
+			if (var_exist(cmd[i], env) == TRUE)
+				replace_value(cmd[i], env);
+			else
+				normal_export(cmd[i], env);
+		}
+		i++;
 	}
 	return (0);
 }
-
-/*SOLO QUEDA UN CASI YA QUE EN ESTO:
-
-    if (strcmp(cmd[i], "0") == 0) que eso podemos arrglarlo con un is_digit
-            {
-                printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
-                return (1);
-            }
-    TAMBIEN LE PUEDEN PASAR NUMEROS Y TIENE QUE DAR EL MISMO ERROR
-    
-    BASH-3.2$ export 1
-BASH: export: `1': not a valid identifier
-BASH-3.2$ export 2
-BASH: export: `2': not a valid identifier
-BASH-3.2$ export =
-BASH: export: `=': not a valid identifier
-
-CASOS PARA CONTROLAR
-
-*/
