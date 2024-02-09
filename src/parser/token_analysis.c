@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_analysis.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:16:10 by agrimald          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/09 13:59:45 by agrimald         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/09 14:09:21 by ojimenez         ###   ########.fr       */
+>>>>>>> 6326f127378060ab892f2b1540aa15f4779549a5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +49,10 @@ int	is_marks(t_tokens *tokens, char *str)
 {
 	int	len;
 
-	len = dst_dots(str, str[0]);
+	if (str[0] == '"')
+		len = dst_dots(str, str[0]);
+	else
+		len = ft_strlen(str);
 	if (len == -1 || len == -2)
 	{
 		tokens->error = 1;
