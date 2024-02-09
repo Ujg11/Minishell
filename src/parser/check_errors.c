@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:14:52 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/08 20:21:54 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:30:04 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,38 @@ int	check_rd(char *str, int i)
 	return (0);
 }
 
+int	check_redirection_errors(char *str, int i)
+{
+	if (str[i] == '>' && is_redirection(str, i))
+		return (printf("syntax error near unexpected token `>'\n"));
+	else if (str[i + 1] == '>' && str[i + 2] == '>')
+		return (printf("syntax error near unexpected token '>>'\n"));
+	else if (str[i] == '|' && check_rd(str, i))
+		return (printf("syntax error near unexpected token `|'\n"));
+	else if (str[i] == '<' && is_redirection(str, i))
+		return (printf("syntax error near unexpected token `<'\n"));
+	else if (str[i + 1] == '<' && str[i + 2] == '<')
+		return (printf("syntax error near unexpected token '<<'\n"));
+	return (0);
+}
+
 int	check_input(char *str)
+{
+	int	i;
+	int	error;
+
+	i = 0;
+	error = 0;
+	while (str[i])
+	{
+		error = check_redirection_errors(str, i);
+		if (error != 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+/*int	check_input(char *str)
 {
 	int	i;
 	int	error;
@@ -78,7 +109,7 @@ int	check_input(char *str)
 		i++;
 	}
 	return (0);
-}
+}*/
 
 /*int main() 
 {
