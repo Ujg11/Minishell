@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:19 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/10 19:27:46 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:32:28 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	handle_export_commands(char **cmd, t_env *env)
 			return (1);
 		}
 		if (mod_strcmp(cmd[i], "PATH="))
-				normal_export(cmd[i], env);
+			normal_export(cmd[i], env);
 		else
 		{
 			if (var_exist(cmd[i], env) == TRUE)

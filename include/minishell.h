@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/10 19:27:06 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:41:58 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ int			var_exist(char *cmd, t_env *env);
 void		bubble_sort(char **arr, int size, int i);
 
 	/*-------EXPORT_UTILS2-----*/
-char *ft_strstr(const char *haystack, const char *needle);
-void handle_path_export(char *cmd, t_env *env);
-char *find_existing_path(t_env *env);
-void add_new_path(char *cmd, t_env *env);
+char		*ft_strstr(const char *haystack, const char *needle);
+void		handle_path_export(char *cmd, t_env *env);
+char		*find_existing_path(t_env *env);
+void		add_new_path(char *cmd, t_env *env);
 
 	/*--------EXPORT-----*/
 void		print_special_export(t_env *env, int count, int i);
