@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:52:19 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/09 14:47:41 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:28:42 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ void	normal_export(char *cmd, t_env *env)
 	}
 	env->env_cpy[j++] = ft_strdup(cmd);
 	env->env_cpy[j] = NULL;
+	if (strstr(cmd, "PATH=") == cmd)
+	{
+		for(int k = 0; env->env_cpy[k] != NULL; k++)
+		{
+			if (strstr(env->env_cpy[k], "PATH=") == env->env_cpy[k])
+			{
+				free(env->env_cpy[k]);
+				env->env_cpy[k] = ft_strdup(cmd);
+				return ;
+			}
+		}
+		env->env_cpy[j - 1] = ft_strdup(cmd);
+	}
 }
 
 int	ft_export(char **cmd, t_env *env)
@@ -86,6 +99,8 @@ int	handle_export_commands(char **cmd, t_env *env)
 			printf("bash: export: `%s': not a valid identifier\n", cmd[i]);
 			return (1);
 		}
+		if (mod_strcmp(cmd[i], "PATH="))
+				normal_export(cmd[i], env);
 		else
 		{
 			if (var_exist(cmd[i], env) == TRUE)
