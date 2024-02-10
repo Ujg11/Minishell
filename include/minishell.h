@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:53:56 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/09 16:35:20 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:27:06 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,17 @@ void		replace_value(char *cmd, t_env *env);
 int			var_exist(char *cmd, t_env *env);
 void		bubble_sort(char **arr, int size, int i);
 
+	/*-------EXPORT_UTILS2-----*/
+char *ft_strstr(const char *haystack, const char *needle);
+void handle_path_export(char *cmd, t_env *env);
+char *find_existing_path(t_env *env);
+void add_new_path(char *cmd, t_env *env);
+
 	/*--------EXPORT-----*/
 void		print_special_export(t_env *env, int count, int i);
 void		special_export(t_env *env);
 void		normal_export(char *cmd, t_env *env);
+
 int			ft_export(char **cmd, t_env *env);
 int			handle_export_commands(char **cmd, t_env *env);
 
