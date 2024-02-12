@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agrimald <agrimald@student.42.fr>          +#+  +:+       +#+         #
+#    By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 18:51:28 by agrimald          #+#    #+#              #
-#    Updated: 2024/02/10 19:28:34 by agrimald         ###   ########.fr        #
+#    Updated: 2024/02/12 16:06:36 by ojimenez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(OBJDIR)%.o: %.c
 			@mkdir -p $(@D)
 			@gcc $(CFLAGS) $(INCS) -c $< -o $@
 
-$(NAME): $(OBJECTS) Makefile
+$(NAME): $(OBJECTS) Makefile include/minishell.h
 			@mkdir -p $(@D)
 			@gcc $(CFLAGS) -o $@ $(OBJECTS) $(LIBFTA) $(READLINE)
 			@printf "\nCompiled successfully!\n"

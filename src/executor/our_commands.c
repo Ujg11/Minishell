@@ -6,7 +6,7 @@
 /*   By: ojimenez <ojimenez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:49:49 by ojimenez          #+#    #+#             */
-/*   Updated: 2024/02/09 14:19:28 by ojimenez         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:02:04 by ojimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ int	command_done(t_expander *exp, t_executor *exec, t_env *env)
 	if (!ft_strcmp(exp->exp_matr[0], "echo"))
 		return (ft_echo((char **)exp->exp_matr));
 	if (!ft_strcmp(exp->exp_matr[0], "cd"))
+	{
+		if (exp->len == 2 && exp->exp_matr[1] && exp->exp_matr[1][0] == '\0')
+			return (0);
 		return (ft_cd(exp->exp_matr, exp->len, env));
+	}
 	else if (!ft_strcmp(exp->exp_matr[0], "pwd"))
 		return (ft_pwd());
 	else if (!ft_strcmp(exp->exp_matr[0], "export"))
