@@ -6,7 +6,7 @@
 /*   By: agrimald <agrimald@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:34:20 by agrimald          #+#    #+#             */
-/*   Updated: 2024/02/10 19:47:09 by agrimald         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:52:03 by agrimald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	add_new_path(char *cmd, t_env *env)
 	j = 0;
 	while (env->env_cpy[j] != NULL)
 		j++;
-	env->env_cpy[j - 1] = ft_strdup(cmd);
+	env->env_cpy[j] = ft_strdup(cmd);
 }
